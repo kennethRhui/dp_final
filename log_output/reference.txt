@@ -1,0 +1,3 @@
+iDLG, https://github.com/PatrickZH/Improved-Deep-Leakage-from-Gradients, iDLG: Improved Deep Leakage from Gradients
+DP,  M. Abadi, et al. "Deep learning with differential privacy." ACM SIGSAC conference on computer and communications security. 2016
+FL_HE, https://github.com/Rand2AI/FedBoosting, FedBoosting: Federated learning with gradient protected boosting for text recognition
