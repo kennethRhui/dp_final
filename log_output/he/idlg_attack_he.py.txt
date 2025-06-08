@@ -42,18 +42,18 @@ Encrypted gradients available: ['body.0.weight', 'body.0.bias', 'body.2.weight',
 WARNING: Cannot decrypt encrypted gradients without private key!
 Attempting attack with random noise as gradient proxy...
 This attack will FAIL - demonstrating HE protection effectiveness
-iDLG random label guess: 3, True label: 0
+iDLG random label guess: 8, True label: 0
 Starting iDLG reconstruction attempt (will fail due to encryption)...
-Iteration 0: Loss = 269.445038 (meaningless due to random gradients)
-Iteration 50: Loss = 269.440033 (meaningless due to random gradients)
-Iteration 100: Loss = 269.440033 (meaningless due to random gradients)
-Iteration 150: Loss = 269.440033 (meaningless due to random gradients)
-Iteration 200: Loss = 269.440033 (meaningless due to random gradients)
-Iteration 250: Loss = 269.440033 (meaningless due to random gradients)
+Iteration 0: Loss = 257.162750 (meaningless due to random gradients)
+Iteration 50: Loss = 257.154572 (meaningless due to random gradients)
+Iteration 100: Loss = 257.154572 (meaningless due to random gradients)
+Iteration 150: Loss = 257.154572 (meaningless due to random gradients)
+Iteration 200: Loss = 257.154572 (meaningless due to random gradients)
+Iteration 250: Loss = 257.154572 (meaningless due to random gradients)
 Results saved: idlg_results_he/round0_client0_he_attack_data_iDLG_result.png
 iDLG reconstruction attempt completed
-MSE: 0.503596, PSNR: 2.98 dB, SSIM: 0.0220
-Time: 2.03s
+MSE: 0.528696, PSNR: 2.77 dB, SSIM: 0.0421
+Time: 2.41s
 RESULT: Attack FAILED due to homomorphic encryption protection ✓
 ✓ HE iDLG attack failed as expected (protection effective)
 
@@ -68,18 +68,18 @@ Encrypted gradients available: ['body.0.weight', 'body.0.bias', 'body.2.weight',
 WARNING: Cannot decrypt encrypted gradients without private key!
 Attempting attack with random noise as gradient proxy...
 This attack will FAIL - demonstrating HE protection effectiveness
-iDLG random label guess: 7, True label: 5
+iDLG random label guess: 6, True label: 5
 Starting iDLG reconstruction attempt (will fail due to encryption)...
-Iteration 0: Loss = 262.241669 (meaningless due to random gradients)
-Iteration 50: Loss = 262.238159 (meaningless due to random gradients)
-Iteration 100: Loss = 262.238159 (meaningless due to random gradients)
-Iteration 150: Loss = 262.238159 (meaningless due to random gradients)
-Iteration 200: Loss = 262.238159 (meaningless due to random gradients)
-Iteration 250: Loss = 262.238159 (meaningless due to random gradients)
+Iteration 0: Loss = 269.104187 (meaningless due to random gradients)
+Iteration 50: Loss = 269.099243 (meaningless due to random gradients)
+Iteration 100: Loss = 269.099243 (meaningless due to random gradients)
+Iteration 150: Loss = 269.099243 (meaningless due to random gradients)
+Iteration 200: Loss = 269.099243 (meaningless due to random gradients)
+Iteration 250: Loss = 269.099243 (meaningless due to random gradients)
 Results saved: idlg_results_he/round0_client1_he_attack_data_iDLG_result.png
 iDLG reconstruction attempt completed
-MSE: 0.425466, PSNR: 3.71 dB, SSIM: -0.0181
-Time: 0.87s
+MSE: 0.496197, PSNR: 3.04 dB, SSIM: 0.0030
+Time: 0.86s
 RESULT: Attack FAILED due to homomorphic encryption protection ✓
 ✓ HE iDLG attack failed as expected (protection effective)
 
@@ -94,18 +94,18 @@ Encrypted gradients available: ['body.0.weight', 'body.0.bias', 'body.2.weight',
 WARNING: Cannot decrypt encrypted gradients without private key!
 Attempting attack with random noise as gradient proxy...
 This attack will FAIL - demonstrating HE protection effectiveness
-iDLG random label guess: 2, True label: 3
+iDLG random label guess: 8, True label: 3
 Starting iDLG reconstruction attempt (will fail due to encryption)...
-Iteration 0: Loss = 273.469147 (meaningless due to random gradients)
-Iteration 50: Loss = 273.464447 (meaningless due to random gradients)
-Iteration 100: Loss = 273.464447 (meaningless due to random gradients)
-Iteration 150: Loss = 273.464447 (meaningless due to random gradients)
-Iteration 200: Loss = 273.464447 (meaningless due to random gradients)
-Iteration 250: Loss = 273.464447 (meaningless due to random gradients)
+Iteration 0: Loss = 272.761017 (meaningless due to random gradients)
+Iteration 50: Loss = 272.754211 (meaningless due to random gradients)
+Iteration 100: Loss = 272.754211 (meaningless due to random gradients)
+Iteration 150: Loss = 272.754211 (meaningless due to random gradients)
+Iteration 200: Loss = 272.754211 (meaningless due to random gradients)
+Iteration 250: Loss = 272.754211 (meaningless due to random gradients)
 Results saved: idlg_results_he/round0_client2_he_attack_data_iDLG_result.png
 iDLG reconstruction attempt completed
-MSE: 0.412166, PSNR: 3.85 dB, SSIM: -0.0089
-Time: 0.86s
+MSE: 0.546023, PSNR: 2.63 dB, SSIM: 0.0123
+Time: 1.09s
 RESULT: Attack FAILED due to homomorphic encryption protection ✓
 ✓ HE iDLG attack failed as expected (protection effective)
 
@@ -115,23 +115,23 @@ Testing: round0_client3_he_attack_data.pt
 
 --- HE Protected iDLG Attack ---
 Loaded HE attack data
-Target shape: torch.Size([1, 1, 28, 28]), True label: 3
+Target shape: torch.Size([1, 1, 28, 28]), True label: 4
 Encrypted gradients available: ['body.0.weight', 'body.0.bias', 'body.2.weight', 'body.2.bias', 'body.4.weight', 'body.4.bias', 'fc.0.weight', 'fc.0.bias']
 WARNING: Cannot decrypt encrypted gradients without private key!
 Attempting attack with random noise as gradient proxy...
 This attack will FAIL - demonstrating HE protection effectiveness
-iDLG random label guess: 1, True label: 3
+iDLG random label guess: 6, True label: 4
 Starting iDLG reconstruction attempt (will fail due to encryption)...
-Iteration 0: Loss = 268.760651 (meaningless due to random gradients)
-Iteration 50: Loss = 268.750793 (meaningless due to random gradients)
-Iteration 100: Loss = 268.750793 (meaningless due to random gradients)
-Iteration 150: Loss = 268.750793 (meaningless due to random gradients)
-Iteration 200: Loss = 268.750793 (meaningless due to random gradients)
-Iteration 250: Loss = 268.750793 (meaningless due to random gradients)
+Iteration 0: Loss = 262.697845 (meaningless due to random gradients)
+Iteration 50: Loss = 262.695801 (meaningless due to random gradients)
+Iteration 100: Loss = 262.695801 (meaningless due to random gradients)
+Iteration 150: Loss = 262.695801 (meaningless due to random gradients)
+Iteration 200: Loss = 262.695801 (meaningless due to random gradients)
+Iteration 250: Loss = 262.695801 (meaningless due to random gradients)
 Results saved: idlg_results_he/round0_client3_he_attack_data_iDLG_result.png
 iDLG reconstruction attempt completed
-MSE: 0.599041, PSNR: 2.23 dB, SSIM: 0.0224
-Time: 0.88s
+MSE: 0.393215, PSNR: 4.05 dB, SSIM: -0.0334
+Time: 0.90s
 RESULT: Attack FAILED due to homomorphic encryption protection ✓
 ✓ HE iDLG attack failed as expected (protection effective)
 
@@ -141,23 +141,23 @@ Testing: round0_client4_he_attack_data.pt
 
 --- HE Protected iDLG Attack ---
 Loaded HE attack data
-Target shape: torch.Size([1, 1, 28, 28]), True label: 6
+Target shape: torch.Size([1, 1, 28, 28]), True label: 2
 Encrypted gradients available: ['body.0.weight', 'body.0.bias', 'body.2.weight', 'body.2.bias', 'body.4.weight', 'body.4.bias', 'fc.0.weight', 'fc.0.bias']
 WARNING: Cannot decrypt encrypted gradients without private key!
 Attempting attack with random noise as gradient proxy...
 This attack will FAIL - demonstrating HE protection effectiveness
-iDLG random label guess: 9, True label: 6
+iDLG random label guess: 1, True label: 2
 Starting iDLG reconstruction attempt (will fail due to encryption)...
-Iteration 0: Loss = 272.842804 (meaningless due to random gradients)
-Iteration 50: Loss = 272.837921 (meaningless due to random gradients)
-Iteration 100: Loss = 272.837921 (meaningless due to random gradients)
-Iteration 150: Loss = 272.837921 (meaningless due to random gradients)
-Iteration 200: Loss = 272.837921 (meaningless due to random gradients)
-Iteration 250: Loss = 272.837921 (meaningless due to random gradients)
+Iteration 0: Loss = 268.406677 (meaningless due to random gradients)
+Iteration 50: Loss = 268.404266 (meaningless due to random gradients)
+Iteration 100: Loss = 268.404266 (meaningless due to random gradients)
+Iteration 150: Loss = 268.404266 (meaningless due to random gradients)
+Iteration 200: Loss = 268.404266 (meaningless due to random gradients)
+Iteration 250: Loss = 268.404266 (meaningless due to random gradients)
 Results saved: idlg_results_he/round0_client4_he_attack_data_iDLG_result.png
 iDLG reconstruction attempt completed
-MSE: 0.485175, PSNR: 3.14 dB, SSIM: 0.0053
-Time: 0.87s
+MSE: 0.440499, PSNR: 3.56 dB, SSIM: -0.0164
+Time: 0.94s
 RESULT: Attack FAILED due to homomorphic encryption protection ✓
 ✓ HE iDLG attack failed as expected (protection effective)
 
@@ -172,18 +172,18 @@ Encrypted gradients available: ['body.0.weight', 'body.0.bias', 'body.2.weight',
 WARNING: Cannot decrypt encrypted gradients without private key!
 Attempting attack with random noise as gradient proxy...
 This attack will FAIL - demonstrating HE protection effectiveness
-iDLG random label guess: 0, True label: 7
+iDLG random label guess: 7, True label: 7
 Starting iDLG reconstruction attempt (will fail due to encryption)...
-Iteration 0: Loss = 264.372314 (meaningless due to random gradients)
-Iteration 50: Loss = 264.366425 (meaningless due to random gradients)
-Iteration 100: Loss = 264.366425 (meaningless due to random gradients)
-Iteration 150: Loss = 264.366425 (meaningless due to random gradients)
-Iteration 200: Loss = 264.366425 (meaningless due to random gradients)
-Iteration 250: Loss = 264.366425 (meaningless due to random gradients)
+Iteration 0: Loss = 270.524200 (meaningless due to random gradients)
+Iteration 50: Loss = 270.520233 (meaningless due to random gradients)
+Iteration 100: Loss = 270.520233 (meaningless due to random gradients)
+Iteration 150: Loss = 270.520233 (meaningless due to random gradients)
+Iteration 200: Loss = 270.520233 (meaningless due to random gradients)
+Iteration 250: Loss = 270.520233 (meaningless due to random gradients)
 Results saved: idlg_results_he/round1_client0_he_attack_data_iDLG_result.png
 iDLG reconstruction attempt completed
-MSE: 0.543398, PSNR: 2.65 dB, SSIM: 0.0351
-Time: 0.85s
+MSE: 0.534300, PSNR: 2.72 dB, SSIM: -0.0279
+Time: 0.98s
 RESULT: Attack FAILED due to homomorphic encryption protection ✓
 ✓ HE iDLG attack failed as expected (protection effective)
 
@@ -198,18 +198,18 @@ Encrypted gradients available: ['body.0.weight', 'body.0.bias', 'body.2.weight',
 WARNING: Cannot decrypt encrypted gradients without private key!
 Attempting attack with random noise as gradient proxy...
 This attack will FAIL - demonstrating HE protection effectiveness
-iDLG random label guess: 1, True label: 5
+iDLG random label guess: 7, True label: 5
 Starting iDLG reconstruction attempt (will fail due to encryption)...
-Iteration 0: Loss = 264.390656 (meaningless due to random gradients)
-Iteration 50: Loss = 264.386597 (meaningless due to random gradients)
-Iteration 100: Loss = 264.386597 (meaningless due to random gradients)
-Iteration 150: Loss = 264.386597 (meaningless due to random gradients)
-Iteration 200: Loss = 264.386597 (meaningless due to random gradients)
-Iteration 250: Loss = 264.386597 (meaningless due to random gradients)
+Iteration 0: Loss = 268.637848 (meaningless due to random gradients)
+Iteration 50: Loss = 268.634521 (meaningless due to random gradients)
+Iteration 100: Loss = 268.634521 (meaningless due to random gradients)
+Iteration 150: Loss = 268.634521 (meaningless due to random gradients)
+Iteration 200: Loss = 268.634521 (meaningless due to random gradients)
+Iteration 250: Loss = 268.634521 (meaningless due to random gradients)
 Results saved: idlg_results_he/round1_client1_he_attack_data_iDLG_result.png
 iDLG reconstruction attempt completed
-MSE: 0.481912, PSNR: 3.17 dB, SSIM: -0.0051
-Time: 0.85s
+MSE: 0.439613, PSNR: 3.57 dB, SSIM: -0.0090
+Time: 0.96s
 RESULT: Attack FAILED due to homomorphic encryption protection ✓
 ✓ HE iDLG attack failed as expected (protection effective)
 
@@ -219,23 +219,23 @@ Testing: round1_client2_he_attack_data.pt
 
 --- HE Protected iDLG Attack ---
 Loaded HE attack data
-Target shape: torch.Size([1, 1, 28, 28]), True label: 3
+Target shape: torch.Size([1, 1, 28, 28]), True label: 7
 Encrypted gradients available: ['body.0.weight', 'body.0.bias', 'body.2.weight', 'body.2.bias', 'body.4.weight', 'body.4.bias', 'fc.0.weight', 'fc.0.bias']
 WARNING: Cannot decrypt encrypted gradients without private key!
 Attempting attack with random noise as gradient proxy...
 This attack will FAIL - demonstrating HE protection effectiveness
-iDLG random label guess: 5, True label: 3
+iDLG random label guess: 7, True label: 7
 Starting iDLG reconstruction attempt (will fail due to encryption)...
-Iteration 0: Loss = 270.437500 (meaningless due to random gradients)
-Iteration 50: Loss = 270.434601 (meaningless due to random gradients)
-Iteration 100: Loss = 270.434601 (meaningless due to random gradients)
-Iteration 150: Loss = 270.434601 (meaningless due to random gradients)
-Iteration 200: Loss = 270.434601 (meaningless due to random gradients)
-Iteration 250: Loss = 270.434601 (meaningless due to random gradients)
+Iteration 0: Loss = 269.541840 (meaningless due to random gradients)
+Iteration 50: Loss = 269.538422 (meaningless due to random gradients)
+Iteration 100: Loss = 269.538422 (meaningless due to random gradients)
+Iteration 150: Loss = 269.538422 (meaningless due to random gradients)
+Iteration 200: Loss = 269.538422 (meaningless due to random gradients)
+Iteration 250: Loss = 269.538422 (meaningless due to random gradients)
 Results saved: idlg_results_he/round1_client2_he_attack_data_iDLG_result.png
 iDLG reconstruction attempt completed
-MSE: 0.427174, PSNR: 3.69 dB, SSIM: -0.0088
-Time: 0.87s
+MSE: 0.425419, PSNR: 3.71 dB, SSIM: 0.0256
+Time: 0.99s
 RESULT: Attack FAILED due to homomorphic encryption protection ✓
 ✓ HE iDLG attack failed as expected (protection effective)
 
@@ -250,18 +250,18 @@ Encrypted gradients available: ['body.0.weight', 'body.0.bias', 'body.2.weight',
 WARNING: Cannot decrypt encrypted gradients without private key!
 Attempting attack with random noise as gradient proxy...
 This attack will FAIL - demonstrating HE protection effectiveness
-iDLG random label guess: 5, True label: 4
+iDLG random label guess: 7, True label: 4
 Starting iDLG reconstruction attempt (will fail due to encryption)...
-Iteration 0: Loss = 266.596008 (meaningless due to random gradients)
-Iteration 50: Loss = 266.591064 (meaningless due to random gradients)
-Iteration 100: Loss = 266.591064 (meaningless due to random gradients)
-Iteration 150: Loss = 266.591064 (meaningless due to random gradients)
-Iteration 200: Loss = 266.591064 (meaningless due to random gradients)
-Iteration 250: Loss = 266.591064 (meaningless due to random gradients)
+Iteration 0: Loss = 268.584320 (meaningless due to random gradients)
+Iteration 50: Loss = 268.580627 (meaningless due to random gradients)
+Iteration 100: Loss = 268.580627 (meaningless due to random gradients)
+Iteration 150: Loss = 268.580627 (meaningless due to random gradients)
+Iteration 200: Loss = 268.580627 (meaningless due to random gradients)
+Iteration 250: Loss = 268.580627 (meaningless due to random gradients)
 Results saved: idlg_results_he/round1_client3_he_attack_data_iDLG_result.png
 iDLG reconstruction attempt completed
-MSE: 0.498373, PSNR: 3.02 dB, SSIM: -0.0250
-Time: 0.82s
+MSE: 0.471598, PSNR: 3.26 dB, SSIM: -0.0101
+Time: 0.90s
 RESULT: Attack FAILED due to homomorphic encryption protection ✓
 ✓ HE iDLG attack failed as expected (protection effective)
 
@@ -271,23 +271,23 @@ Testing: round1_client4_he_attack_data.pt
 
 --- HE Protected iDLG Attack ---
 Loaded HE attack data
-Target shape: torch.Size([1, 1, 28, 28]), True label: 2
+Target shape: torch.Size([1, 1, 28, 28]), True label: 6
 Encrypted gradients available: ['body.0.weight', 'body.0.bias', 'body.2.weight', 'body.2.bias', 'body.4.weight', 'body.4.bias', 'fc.0.weight', 'fc.0.bias']
 WARNING: Cannot decrypt encrypted gradients without private key!
 Attempting attack with random noise as gradient proxy...
 This attack will FAIL - demonstrating HE protection effectiveness
-iDLG random label guess: 3, True label: 2
+iDLG random label guess: 6, True label: 6
 Starting iDLG reconstruction attempt (will fail due to encryption)...
-Iteration 0: Loss = 276.175781 (meaningless due to random gradients)
-Iteration 50: Loss = 276.170868 (meaningless due to random gradients)
-Iteration 100: Loss = 276.170868 (meaningless due to random gradients)
-Iteration 150: Loss = 276.170868 (meaningless due to random gradients)
-Iteration 200: Loss = 276.170868 (meaningless due to random gradients)
-Iteration 250: Loss = 276.170868 (meaningless due to random gradients)
+Iteration 0: Loss = 277.246368 (meaningless due to random gradients)
+Iteration 50: Loss = 277.242249 (meaningless due to random gradients)
+Iteration 100: Loss = 277.242249 (meaningless due to random gradients)
+Iteration 150: Loss = 277.242249 (meaningless due to random gradients)
+Iteration 200: Loss = 277.242249 (meaningless due to random gradients)
+Iteration 250: Loss = 277.242249 (meaningless due to random gradients)
 Results saved: idlg_results_he/round1_client4_he_attack_data_iDLG_result.png
 iDLG reconstruction attempt completed
-MSE: 0.521094, PSNR: 2.83 dB, SSIM: -0.0004
-Time: 0.84s
+MSE: 0.451376, PSNR: 3.45 dB, SSIM: -0.0278
+Time: 0.93s
 RESULT: Attack FAILED due to homomorphic encryption protection ✓
 ✓ HE iDLG attack failed as expected (protection effective)
 
@@ -302,18 +302,18 @@ Encrypted gradients available: ['body.0.weight', 'body.0.bias', 'body.2.weight',
 WARNING: Cannot decrypt encrypted gradients without private key!
 Attempting attack with random noise as gradient proxy...
 This attack will FAIL - demonstrating HE protection effectiveness
-iDLG random label guess: 4, True label: 0
+iDLG random label guess: 6, True label: 0
 Starting iDLG reconstruction attempt (will fail due to encryption)...
-Iteration 0: Loss = 259.056763 (meaningless due to random gradients)
-Iteration 50: Loss = 259.053680 (meaningless due to random gradients)
-Iteration 100: Loss = 259.053680 (meaningless due to random gradients)
-Iteration 150: Loss = 259.053680 (meaningless due to random gradients)
-Iteration 200: Loss = 259.053680 (meaningless due to random gradients)
-Iteration 250: Loss = 259.053680 (meaningless due to random gradients)
+Iteration 0: Loss = 266.117706 (meaningless due to random gradients)
+Iteration 50: Loss = 266.114899 (meaningless due to random gradients)
+Iteration 100: Loss = 266.114899 (meaningless due to random gradients)
+Iteration 150: Loss = 266.114899 (meaningless due to random gradients)
+Iteration 200: Loss = 266.114899 (meaningless due to random gradients)
+Iteration 250: Loss = 266.114899 (meaningless due to random gradients)
 Results saved: idlg_results_he/round2_client0_he_attack_data_iDLG_result.png
 iDLG reconstruction attempt completed
-MSE: 0.449412, PSNR: 3.47 dB, SSIM: 0.0064
-Time: 0.81s
+MSE: 0.408159, PSNR: 3.89 dB, SSIM: -0.0216
+Time: 0.93s
 RESULT: Attack FAILED due to homomorphic encryption protection ✓
 ✓ HE iDLG attack failed as expected (protection effective)
 
@@ -328,18 +328,18 @@ Encrypted gradients available: ['body.0.weight', 'body.0.bias', 'body.2.weight',
 WARNING: Cannot decrypt encrypted gradients without private key!
 Attempting attack with random noise as gradient proxy...
 This attack will FAIL - demonstrating HE protection effectiveness
-iDLG random label guess: 2, True label: 2
+iDLG random label guess: 3, True label: 2
 Starting iDLG reconstruction attempt (will fail due to encryption)...
-Iteration 0: Loss = 259.298431 (meaningless due to random gradients)
-Iteration 50: Loss = 259.292297 (meaningless due to random gradients)
-Iteration 100: Loss = 259.292297 (meaningless due to random gradients)
-Iteration 150: Loss = 259.292297 (meaningless due to random gradients)
-Iteration 200: Loss = 259.292297 (meaningless due to random gradients)
-Iteration 250: Loss = 259.292297 (meaningless due to random gradients)
+Iteration 0: Loss = 271.203827 (meaningless due to random gradients)
+Iteration 50: Loss = 271.201630 (meaningless due to random gradients)
+Iteration 100: Loss = 271.201630 (meaningless due to random gradients)
+Iteration 150: Loss = 271.201630 (meaningless due to random gradients)
+Iteration 200: Loss = 271.201630 (meaningless due to random gradients)
+Iteration 250: Loss = 271.201630 (meaningless due to random gradients)
 Results saved: idlg_results_he/round2_client1_he_attack_data_iDLG_result.png
 iDLG reconstruction attempt completed
-MSE: 0.524993, PSNR: 2.80 dB, SSIM: 0.0072
-Time: 0.80s
+MSE: 0.356611, PSNR: 4.48 dB, SSIM: -0.0025
+Time: 0.96s
 RESULT: Attack FAILED due to homomorphic encryption protection ✓
 ✓ HE iDLG attack failed as expected (protection effective)
 
@@ -349,23 +349,23 @@ Testing: round2_client2_he_attack_data.pt
 
 --- HE Protected iDLG Attack ---
 Loaded HE attack data
-Target shape: torch.Size([1, 1, 28, 28]), True label: 7
+Target shape: torch.Size([1, 1, 28, 28]), True label: 3
 Encrypted gradients available: ['body.0.weight', 'body.0.bias', 'body.2.weight', 'body.2.bias', 'body.4.weight', 'body.4.bias', 'fc.0.weight', 'fc.0.bias']
 WARNING: Cannot decrypt encrypted gradients without private key!
 Attempting attack with random noise as gradient proxy...
 This attack will FAIL - demonstrating HE protection effectiveness
-iDLG random label guess: 3, True label: 7
+iDLG random label guess: 3, True label: 3
 Starting iDLG reconstruction attempt (will fail due to encryption)...
-Iteration 0: Loss = 270.949493 (meaningless due to random gradients)
-Iteration 50: Loss = 270.946228 (meaningless due to random gradients)
-Iteration 100: Loss = 270.946228 (meaningless due to random gradients)
-Iteration 150: Loss = 270.946228 (meaningless due to random gradients)
-Iteration 200: Loss = 270.946228 (meaningless due to random gradients)
-Iteration 250: Loss = 270.946228 (meaningless due to random gradients)
+Iteration 0: Loss = 268.787689 (meaningless due to random gradients)
+Iteration 50: Loss = 268.783752 (meaningless due to random gradients)
+Iteration 100: Loss = 268.783752 (meaningless due to random gradients)
+Iteration 150: Loss = 268.783752 (meaningless due to random gradients)
+Iteration 200: Loss = 268.783752 (meaningless due to random gradients)
+Iteration 250: Loss = 268.783752 (meaningless due to random gradients)
 Results saved: idlg_results_he/round2_client2_he_attack_data_iDLG_result.png
 iDLG reconstruction attempt completed
-MSE: 0.506916, PSNR: 2.95 dB, SSIM: -0.0113
-Time: 0.82s
+MSE: 0.454486, PSNR: 3.42 dB, SSIM: -0.0292
+Time: 1.17s
 RESULT: Attack FAILED due to homomorphic encryption protection ✓
 ✓ HE iDLG attack failed as expected (protection effective)
 
@@ -375,23 +375,23 @@ Testing: round2_client3_he_attack_data.pt
 
 --- HE Protected iDLG Attack ---
 Loaded HE attack data
-Target shape: torch.Size([1, 1, 28, 28]), True label: 3
+Target shape: torch.Size([1, 1, 28, 28]), True label: 4
 Encrypted gradients available: ['body.0.weight', 'body.0.bias', 'body.2.weight', 'body.2.bias', 'body.4.weight', 'body.4.bias', 'fc.0.weight', 'fc.0.bias']
 WARNING: Cannot decrypt encrypted gradients without private key!
 Attempting attack with random noise as gradient proxy...
 This attack will FAIL - demonstrating HE protection effectiveness
-iDLG random label guess: 4, True label: 3
+iDLG random label guess: 1, True label: 4
 Starting iDLG reconstruction attempt (will fail due to encryption)...
-Iteration 0: Loss = 260.851013 (meaningless due to random gradients)
-Iteration 50: Loss = 260.846741 (meaningless due to random gradients)
-Iteration 100: Loss = 260.846741 (meaningless due to random gradients)
-Iteration 150: Loss = 260.846741 (meaningless due to random gradients)
-Iteration 200: Loss = 260.846741 (meaningless due to random gradients)
-Iteration 250: Loss = 260.846741 (meaningless due to random gradients)
+Iteration 0: Loss = 269.325806 (meaningless due to random gradients)
+Iteration 50: Loss = 269.320679 (meaningless due to random gradients)
+Iteration 100: Loss = 269.320679 (meaningless due to random gradients)
+Iteration 150: Loss = 269.320679 (meaningless due to random gradients)
+Iteration 200: Loss = 269.320679 (meaningless due to random gradients)
+Iteration 250: Loss = 269.320679 (meaningless due to random gradients)
 Results saved: idlg_results_he/round2_client3_he_attack_data_iDLG_result.png
 iDLG reconstruction attempt completed
-MSE: 0.463928, PSNR: 3.34 dB, SSIM: 0.0323
-Time: 0.88s
+MSE: 0.467139, PSNR: 3.31 dB, SSIM: 0.0163
+Time: 1.00s
 RESULT: Attack FAILED due to homomorphic encryption protection ✓
 ✓ HE iDLG attack failed as expected (protection effective)
 
@@ -401,23 +401,23 @@ Testing: round2_client4_he_attack_data.pt
 
 --- HE Protected iDLG Attack ---
 Loaded HE attack data
-Target shape: torch.Size([1, 1, 28, 28]), True label: 6
+Target shape: torch.Size([1, 1, 28, 28]), True label: 2
 Encrypted gradients available: ['body.0.weight', 'body.0.bias', 'body.2.weight', 'body.2.bias', 'body.4.weight', 'body.4.bias', 'fc.0.weight', 'fc.0.bias']
 WARNING: Cannot decrypt encrypted gradients without private key!
 Attempting attack with random noise as gradient proxy...
 This attack will FAIL - demonstrating HE protection effectiveness
-iDLG random label guess: 7, True label: 6
+iDLG random label guess: 3, True label: 2
 Starting iDLG reconstruction attempt (will fail due to encryption)...
-Iteration 0: Loss = 258.343201 (meaningless due to random gradients)
-Iteration 50: Loss = 258.339691 (meaningless due to random gradients)
-Iteration 100: Loss = 258.339691 (meaningless due to random gradients)
-Iteration 150: Loss = 258.339691 (meaningless due to random gradients)
-Iteration 200: Loss = 258.339691 (meaningless due to random gradients)
-Iteration 250: Loss = 258.339691 (meaningless due to random gradients)
+Iteration 0: Loss = 264.131958 (meaningless due to random gradients)
+Iteration 50: Loss = 264.128143 (meaningless due to random gradients)
+Iteration 100: Loss = 264.128143 (meaningless due to random gradients)
+Iteration 150: Loss = 264.128143 (meaningless due to random gradients)
+Iteration 200: Loss = 264.128143 (meaningless due to random gradients)
+Iteration 250: Loss = 264.128143 (meaningless due to random gradients)
 Results saved: idlg_results_he/round2_client4_he_attack_data_iDLG_result.png
 iDLG reconstruction attempt completed
-MSE: 0.428081, PSNR: 3.68 dB, SSIM: 0.0082
-Time: 0.86s
+MSE: 0.495472, PSNR: 3.05 dB, SSIM: 0.0052
+Time: 1.08s
 RESULT: Attack FAILED due to homomorphic encryption protection ✓
 ✓ HE iDLG attack failed as expected (protection effective)
 
@@ -434,16 +434,16 @@ Attempting attack with random noise as gradient proxy...
 This attack will FAIL - demonstrating HE protection effectiveness
 iDLG random label guess: 3, True label: 7
 Starting iDLG reconstruction attempt (will fail due to encryption)...
-Iteration 0: Loss = 276.997070 (meaningless due to random gradients)
-Iteration 50: Loss = 276.991241 (meaningless due to random gradients)
-Iteration 100: Loss = 276.991241 (meaningless due to random gradients)
-Iteration 150: Loss = 276.991241 (meaningless due to random gradients)
-Iteration 200: Loss = 276.991241 (meaningless due to random gradients)
-Iteration 250: Loss = 276.991241 (meaningless due to random gradients)
+Iteration 0: Loss = 268.263275 (meaningless due to random gradients)
+Iteration 50: Loss = 268.256561 (meaningless due to random gradients)
+Iteration 100: Loss = 268.256561 (meaningless due to random gradients)
+Iteration 150: Loss = 268.256561 (meaningless due to random gradients)
+Iteration 200: Loss = 268.256561 (meaningless due to random gradients)
+Iteration 250: Loss = 268.256561 (meaningless due to random gradients)
 Results saved: idlg_results_he/round3_client0_he_attack_data_iDLG_result.png
 iDLG reconstruction attempt completed
-MSE: 0.464128, PSNR: 3.33 dB, SSIM: 0.0393
-Time: 0.99s
+MSE: 0.625597, PSNR: 2.04 dB, SSIM: -0.0281
+Time: 1.06s
 RESULT: Attack FAILED due to homomorphic encryption protection ✓
 ✓ HE iDLG attack failed as expected (protection effective)
 
@@ -453,23 +453,23 @@ Testing: round3_client1_he_attack_data.pt
 
 --- HE Protected iDLG Attack ---
 Loaded HE attack data
-Target shape: torch.Size([1, 1, 28, 28]), True label: 5
+Target shape: torch.Size([1, 1, 28, 28]), True label: 2
 Encrypted gradients available: ['body.0.weight', 'body.0.bias', 'body.2.weight', 'body.2.bias', 'body.4.weight', 'body.4.bias', 'fc.0.weight', 'fc.0.bias']
 WARNING: Cannot decrypt encrypted gradients without private key!
 Attempting attack with random noise as gradient proxy...
 This attack will FAIL - demonstrating HE protection effectiveness
-iDLG random label guess: 7, True label: 5
+iDLG random label guess: 6, True label: 2
 Starting iDLG reconstruction attempt (will fail due to encryption)...
-Iteration 0: Loss = 264.908722 (meaningless due to random gradients)
-Iteration 50: Loss = 264.906219 (meaningless due to random gradients)
-Iteration 100: Loss = 264.906219 (meaningless due to random gradients)
-Iteration 150: Loss = 264.906219 (meaningless due to random gradients)
-Iteration 200: Loss = 264.906219 (meaningless due to random gradients)
-Iteration 250: Loss = 264.906219 (meaningless due to random gradients)
+Iteration 0: Loss = 260.263153 (meaningless due to random gradients)
+Iteration 50: Loss = 260.261230 (meaningless due to random gradients)
+Iteration 100: Loss = 260.261230 (meaningless due to random gradients)
+Iteration 150: Loss = 260.261230 (meaningless due to random gradients)
+Iteration 200: Loss = 260.261230 (meaningless due to random gradients)
+Iteration 250: Loss = 260.261230 (meaningless due to random gradients)
 Results saved: idlg_results_he/round3_client1_he_attack_data_iDLG_result.png
 iDLG reconstruction attempt completed
-MSE: 0.438197, PSNR: 3.58 dB, SSIM: 0.0056
-Time: 0.92s
+MSE: 0.410539, PSNR: 3.87 dB, SSIM: -0.0185
+Time: 0.93s
 RESULT: Attack FAILED due to homomorphic encryption protection ✓
 ✓ HE iDLG attack failed as expected (protection effective)
 
@@ -479,23 +479,23 @@ Testing: round3_client2_he_attack_data.pt
 
 --- HE Protected iDLG Attack ---
 Loaded HE attack data
-Target shape: torch.Size([1, 1, 28, 28]), True label: 3
+Target shape: torch.Size([1, 1, 28, 28]), True label: 7
 Encrypted gradients available: ['body.0.weight', 'body.0.bias', 'body.2.weight', 'body.2.bias', 'body.4.weight', 'body.4.bias', 'fc.0.weight', 'fc.0.bias']
 WARNING: Cannot decrypt encrypted gradients without private key!
 Attempting attack with random noise as gradient proxy...
 This attack will FAIL - demonstrating HE protection effectiveness
-iDLG random label guess: 0, True label: 3
+iDLG random label guess: 2, True label: 7
 Starting iDLG reconstruction attempt (will fail due to encryption)...
-Iteration 0: Loss = 266.281708 (meaningless due to random gradients)
-Iteration 50: Loss = 266.276825 (meaningless due to random gradients)
-Iteration 100: Loss = 266.276825 (meaningless due to random gradients)
-Iteration 150: Loss = 266.276825 (meaningless due to random gradients)
-Iteration 200: Loss = 266.276825 (meaningless due to random gradients)
-Iteration 250: Loss = 266.276825 (meaningless due to random gradients)
+Iteration 0: Loss = 268.683167 (meaningless due to random gradients)
+Iteration 50: Loss = 268.678467 (meaningless due to random gradients)
+Iteration 100: Loss = 268.678467 (meaningless due to random gradients)
+Iteration 150: Loss = 268.678467 (meaningless due to random gradients)
+Iteration 200: Loss = 268.678467 (meaningless due to random gradients)
+Iteration 250: Loss = 268.678467 (meaningless due to random gradients)
 Results saved: idlg_results_he/round3_client2_he_attack_data_iDLG_result.png
 iDLG reconstruction attempt completed
-MSE: 0.505758, PSNR: 2.96 dB, SSIM: 0.0015
-Time: 0.94s
+MSE: 0.497005, PSNR: 3.04 dB, SSIM: -0.0046
+Time: 0.89s
 RESULT: Attack FAILED due to homomorphic encryption protection ✓
 ✓ HE iDLG attack failed as expected (protection effective)
 
@@ -505,23 +505,23 @@ Testing: round3_client3_he_attack_data.pt
 
 --- HE Protected iDLG Attack ---
 Loaded HE attack data
-Target shape: torch.Size([1, 1, 28, 28]), True label: 3
+Target shape: torch.Size([1, 1, 28, 28]), True label: 4
 Encrypted gradients available: ['body.0.weight', 'body.0.bias', 'body.2.weight', 'body.2.bias', 'body.4.weight', 'body.4.bias', 'fc.0.weight', 'fc.0.bias']
 WARNING: Cannot decrypt encrypted gradients without private key!
 Attempting attack with random noise as gradient proxy...
 This attack will FAIL - demonstrating HE protection effectiveness
-iDLG random label guess: 7, True label: 3
+iDLG random label guess: 3, True label: 4
 Starting iDLG reconstruction attempt (will fail due to encryption)...
-Iteration 0: Loss = 273.880157 (meaningless due to random gradients)
-Iteration 50: Loss = 273.875397 (meaningless due to random gradients)
-Iteration 100: Loss = 273.875397 (meaningless due to random gradients)
-Iteration 150: Loss = 273.875397 (meaningless due to random gradients)
-Iteration 200: Loss = 273.875397 (meaningless due to random gradients)
-Iteration 250: Loss = 273.875397 (meaningless due to random gradients)
+Iteration 0: Loss = 265.347443 (meaningless due to random gradients)
+Iteration 50: Loss = 265.343811 (meaningless due to random gradients)
+Iteration 100: Loss = 265.343811 (meaningless due to random gradients)
+Iteration 150: Loss = 265.343811 (meaningless due to random gradients)
+Iteration 200: Loss = 265.343811 (meaningless due to random gradients)
+Iteration 250: Loss = 265.343811 (meaningless due to random gradients)
 Results saved: idlg_results_he/round3_client3_he_attack_data_iDLG_result.png
 iDLG reconstruction attempt completed
-MSE: 0.505827, PSNR: 2.96 dB, SSIM: 0.0198
-Time: 0.95s
+MSE: 0.450543, PSNR: 3.46 dB, SSIM: 0.0411
+Time: 0.89s
 RESULT: Attack FAILED due to homomorphic encryption protection ✓
 ✓ HE iDLG attack failed as expected (protection effective)
 
@@ -536,18 +536,18 @@ Encrypted gradients available: ['body.0.weight', 'body.0.bias', 'body.2.weight',
 WARNING: Cannot decrypt encrypted gradients without private key!
 Attempting attack with random noise as gradient proxy...
 This attack will FAIL - demonstrating HE protection effectiveness
-iDLG random label guess: 9, True label: 2
+iDLG random label guess: 0, True label: 2
 Starting iDLG reconstruction attempt (will fail due to encryption)...
-Iteration 0: Loss = 273.249512 (meaningless due to random gradients)
-Iteration 50: Loss = 273.243530 (meaningless due to random gradients)
-Iteration 100: Loss = 273.243530 (meaningless due to random gradients)
-Iteration 150: Loss = 273.243530 (meaningless due to random gradients)
-Iteration 200: Loss = 273.243530 (meaningless due to random gradients)
-Iteration 250: Loss = 273.243530 (meaningless due to random gradients)
+Iteration 0: Loss = 263.928223 (meaningless due to random gradients)
+Iteration 50: Loss = 263.924713 (meaningless due to random gradients)
+Iteration 100: Loss = 263.924713 (meaningless due to random gradients)
+Iteration 150: Loss = 263.924713 (meaningless due to random gradients)
+Iteration 200: Loss = 263.924713 (meaningless due to random gradients)
+Iteration 250: Loss = 263.924713 (meaningless due to random gradients)
 Results saved: idlg_results_he/round3_client4_he_attack_data_iDLG_result.png
 iDLG reconstruction attempt completed
-MSE: 0.545207, PSNR: 2.63 dB, SSIM: 0.0620
-Time: 0.89s
+MSE: 0.489668, PSNR: 3.10 dB, SSIM: 0.0100
+Time: 0.86s
 RESULT: Attack FAILED due to homomorphic encryption protection ✓
 ✓ HE iDLG attack failed as expected (protection effective)
 
@@ -557,23 +557,23 @@ Testing: round4_client0_he_attack_data.pt
 
 --- HE Protected iDLG Attack ---
 Loaded HE attack data
-Target shape: torch.Size([1, 1, 28, 28]), True label: 0
+Target shape: torch.Size([1, 1, 28, 28]), True label: 7
 Encrypted gradients available: ['body.0.weight', 'body.0.bias', 'body.2.weight', 'body.2.bias', 'body.4.weight', 'body.4.bias', 'fc.0.weight', 'fc.0.bias']
 WARNING: Cannot decrypt encrypted gradients without private key!
 Attempting attack with random noise as gradient proxy...
 This attack will FAIL - demonstrating HE protection effectiveness
-iDLG random label guess: 6, True label: 0
+iDLG random label guess: 9, True label: 7
 Starting iDLG reconstruction attempt (will fail due to encryption)...
-Iteration 0: Loss = 264.625153 (meaningless due to random gradients)
-Iteration 50: Loss = 264.620239 (meaningless due to random gradients)
-Iteration 100: Loss = 264.620239 (meaningless due to random gradients)
-Iteration 150: Loss = 264.620239 (meaningless due to random gradients)
-Iteration 200: Loss = 264.620239 (meaningless due to random gradients)
-Iteration 250: Loss = 264.620239 (meaningless due to random gradients)
+Iteration 0: Loss = 272.320923 (meaningless due to random gradients)
+Iteration 50: Loss = 272.316864 (meaningless due to random gradients)
+Iteration 100: Loss = 272.316864 (meaningless due to random gradients)
+Iteration 150: Loss = 272.316864 (meaningless due to random gradients)
+Iteration 200: Loss = 272.316864 (meaningless due to random gradients)
+Iteration 250: Loss = 272.316864 (meaningless due to random gradients)
 Results saved: idlg_results_he/round4_client0_he_attack_data_iDLG_result.png
 iDLG reconstruction attempt completed
-MSE: 0.467494, PSNR: 3.30 dB, SSIM: 0.0117
-Time: 1.00s
+MSE: 0.428218, PSNR: 3.68 dB, SSIM: 0.0263
+Time: 0.87s
 RESULT: Attack FAILED due to homomorphic encryption protection ✓
 ✓ HE iDLG attack failed as expected (protection effective)
 
@@ -583,23 +583,23 @@ Testing: round4_client1_he_attack_data.pt
 
 --- HE Protected iDLG Attack ---
 Loaded HE attack data
-Target shape: torch.Size([1, 1, 28, 28]), True label: 5
+Target shape: torch.Size([1, 1, 28, 28]), True label: 2
 Encrypted gradients available: ['body.0.weight', 'body.0.bias', 'body.2.weight', 'body.2.bias', 'body.4.weight', 'body.4.bias', 'fc.0.weight', 'fc.0.bias']
 WARNING: Cannot decrypt encrypted gradients without private key!
 Attempting attack with random noise as gradient proxy...
 This attack will FAIL - demonstrating HE protection effectiveness
-iDLG random label guess: 9, True label: 5
+iDLG random label guess: 9, True label: 2
 Starting iDLG reconstruction attempt (will fail due to encryption)...
-Iteration 0: Loss = 267.633789 (meaningless due to random gradients)
-Iteration 50: Loss = 267.627350 (meaningless due to random gradients)
-Iteration 100: Loss = 267.627350 (meaningless due to random gradients)
-Iteration 150: Loss = 267.627350 (meaningless due to random gradients)
-Iteration 200: Loss = 267.627350 (meaningless due to random gradients)
-Iteration 250: Loss = 267.627350 (meaningless due to random gradients)
+Iteration 0: Loss = 261.659485 (meaningless due to random gradients)
+Iteration 50: Loss = 261.655884 (meaningless due to random gradients)
+Iteration 100: Loss = 261.655884 (meaningless due to random gradients)
+Iteration 150: Loss = 261.655884 (meaningless due to random gradients)
+Iteration 200: Loss = 261.655884 (meaningless due to random gradients)
+Iteration 250: Loss = 261.655884 (meaningless due to random gradients)
 Results saved: idlg_results_he/round4_client1_he_attack_data_iDLG_result.png
 iDLG reconstruction attempt completed
-MSE: 0.535507, PSNR: 2.71 dB, SSIM: 0.0341
-Time: 0.86s
+MSE: 0.453863, PSNR: 3.43 dB, SSIM: 0.0201
+Time: 0.87s
 RESULT: Attack FAILED due to homomorphic encryption protection ✓
 ✓ HE iDLG attack failed as expected (protection effective)
 
@@ -609,23 +609,23 @@ Testing: round4_client2_he_attack_data.pt
 
 --- HE Protected iDLG Attack ---
 Loaded HE attack data
-Target shape: torch.Size([1, 1, 28, 28]), True label: 3
+Target shape: torch.Size([1, 1, 28, 28]), True label: 7
 Encrypted gradients available: ['body.0.weight', 'body.0.bias', 'body.2.weight', 'body.2.bias', 'body.4.weight', 'body.4.bias', 'fc.0.weight', 'fc.0.bias']
 WARNING: Cannot decrypt encrypted gradients without private key!
 Attempting attack with random noise as gradient proxy...
 This attack will FAIL - demonstrating HE protection effectiveness
-iDLG random label guess: 8, True label: 3
+iDLG random label guess: 1, True label: 7
 Starting iDLG reconstruction attempt (will fail due to encryption)...
-Iteration 0: Loss = 263.993622 (meaningless due to random gradients)
-Iteration 50: Loss = 263.990631 (meaningless due to random gradients)
-Iteration 100: Loss = 263.990631 (meaningless due to random gradients)
-Iteration 150: Loss = 263.990631 (meaningless due to random gradients)
-Iteration 200: Loss = 263.990631 (meaningless due to random gradients)
-Iteration 250: Loss = 263.990631 (meaningless due to random gradients)
+Iteration 0: Loss = 271.248291 (meaningless due to random gradients)
+Iteration 50: Loss = 271.241028 (meaningless due to random gradients)
+Iteration 100: Loss = 271.241028 (meaningless due to random gradients)
+Iteration 150: Loss = 271.241028 (meaningless due to random gradients)
+Iteration 200: Loss = 271.241028 (meaningless due to random gradients)
+Iteration 250: Loss = 271.241028 (meaningless due to random gradients)
 Results saved: idlg_results_he/round4_client2_he_attack_data_iDLG_result.png
 iDLG reconstruction attempt completed
-MSE: 0.420427, PSNR: 3.76 dB, SSIM: 0.0029
-Time: 0.85s
+MSE: 0.517904, PSNR: 2.86 dB, SSIM: 0.0129
+Time: 0.89s
 RESULT: Attack FAILED due to homomorphic encryption protection ✓
 ✓ HE iDLG attack failed as expected (protection effective)
 
@@ -635,23 +635,23 @@ Testing: round4_client3_he_attack_data.pt
 
 --- HE Protected iDLG Attack ---
 Loaded HE attack data
-Target shape: torch.Size([1, 1, 28, 28]), True label: 3
+Target shape: torch.Size([1, 1, 28, 28]), True label: 4
 Encrypted gradients available: ['body.0.weight', 'body.0.bias', 'body.2.weight', 'body.2.bias', 'body.4.weight', 'body.4.bias', 'fc.0.weight', 'fc.0.bias']
 WARNING: Cannot decrypt encrypted gradients without private key!
 Attempting attack with random noise as gradient proxy...
 This attack will FAIL - demonstrating HE protection effectiveness
-iDLG random label guess: 6, True label: 3
+iDLG random label guess: 5, True label: 4
 Starting iDLG reconstruction attempt (will fail due to encryption)...
-Iteration 0: Loss = 260.536011 (meaningless due to random gradients)
-Iteration 50: Loss = 260.531006 (meaningless due to random gradients)
-Iteration 100: Loss = 260.531006 (meaningless due to random gradients)
-Iteration 150: Loss = 260.531006 (meaningless due to random gradients)
-Iteration 200: Loss = 260.531006 (meaningless due to random gradients)
-Iteration 250: Loss = 260.531006 (meaningless due to random gradients)
+Iteration 0: Loss = 267.492767 (meaningless due to random gradients)
+Iteration 50: Loss = 267.489929 (meaningless due to random gradients)
+Iteration 100: Loss = 267.489929 (meaningless due to random gradients)
+Iteration 150: Loss = 267.489929 (meaningless due to random gradients)
+Iteration 200: Loss = 267.489929 (meaningless due to random gradients)
+Iteration 250: Loss = 267.489929 (meaningless due to random gradients)
 Results saved: idlg_results_he/round4_client3_he_attack_data_iDLG_result.png
 iDLG reconstruction attempt completed
-MSE: 0.445441, PSNR: 3.51 dB, SSIM: 0.0383
-Time: 0.87s
+MSE: 0.449778, PSNR: 3.47 dB, SSIM: 0.0168
+Time: 0.91s
 RESULT: Attack FAILED due to homomorphic encryption protection ✓
 ✓ HE iDLG attack failed as expected (protection effective)
 
@@ -661,23 +661,23 @@ Testing: round4_client4_he_attack_data.pt
 
 --- HE Protected iDLG Attack ---
 Loaded HE attack data
-Target shape: torch.Size([1, 1, 28, 28]), True label: 2
+Target shape: torch.Size([1, 1, 28, 28]), True label: 6
 Encrypted gradients available: ['body.0.weight', 'body.0.bias', 'body.2.weight', 'body.2.bias', 'body.4.weight', 'body.4.bias', 'fc.0.weight', 'fc.0.bias']
 WARNING: Cannot decrypt encrypted gradients without private key!
 Attempting attack with random noise as gradient proxy...
 This attack will FAIL - demonstrating HE protection effectiveness
-iDLG random label guess: 3, True label: 2
+iDLG random label guess: 7, True label: 6
 Starting iDLG reconstruction attempt (will fail due to encryption)...
-Iteration 0: Loss = 268.002747 (meaningless due to random gradients)
-Iteration 50: Loss = 267.999756 (meaningless due to random gradients)
-Iteration 100: Loss = 267.999756 (meaningless due to random gradients)
-Iteration 150: Loss = 267.999756 (meaningless due to random gradients)
-Iteration 200: Loss = 267.999756 (meaningless due to random gradients)
-Iteration 250: Loss = 267.999756 (meaningless due to random gradients)
+Iteration 0: Loss = 270.183838 (meaningless due to random gradients)
+Iteration 50: Loss = 270.180481 (meaningless due to random gradients)
+Iteration 100: Loss = 270.180450 (meaningless due to random gradients)
+Iteration 150: Loss = 270.180481 (meaningless due to random gradients)
+Iteration 200: Loss = 270.180450 (meaningless due to random gradients)
+Iteration 250: Loss = 270.180481 (meaningless due to random gradients)
 Results saved: idlg_results_he/round4_client4_he_attack_data_iDLG_result.png
 iDLG reconstruction attempt completed
-MSE: 0.471496, PSNR: 3.27 dB, SSIM: 0.0290
-Time: 0.87s
+MSE: 0.450275, PSNR: 3.47 dB, SSIM: 0.0225
+Time: 0.92s
 RESULT: Attack FAILED due to homomorphic encryption protection ✓
 ✓ HE iDLG attack failed as expected (protection effective)
 
@@ -694,8 +694,8 @@ Good Protection (0.1 ≤ MSE ≤ 0.3): 0/25 (0.0%)
 Poor Protection (MSE < 0.1): 0/25 (0.0%)
 
 OVERALL PROTECTION STATISTICS:
-Average MSE: 0.482808 (higher = better protection)
-Average Attack Time: 0.92s (time wasted by attackers)
+Average MSE: 0.467288 (higher = better protection)
+Average Attack Time: 1.01s (time wasted by attackers)
 
 FINAL CONCLUSION: Homomorphic Encryption provides EXCELLENT protection against iDLG attacks
 RESULT: ✓ SUCCESS

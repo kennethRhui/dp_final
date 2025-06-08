@@ -27,11 +27,11 @@ Client 0: Total samples = 400
 Client 0: Train=320, Test=80
 Client 0 encrypting gradients...
 Client 0 gradient encryption completed
-Client 0 training completed. Avg loss: 1.1092
+Client 0 training completed. Avg loss: 3.0800
 Client 0: Total samples = 400
 Client 0: Train=320, Test=80
-Client 0 evaluation: 39/80 correct, accuracy: 0.4875
-Client 0: 320 samples, loss: 1.1092, eval_acc: 0.4875
+Client 0 evaluation: 50/80 correct, accuracy: 0.6250
+Client 0: 320 samples, loss: 3.0800, eval_acc: 0.6250
 Client 0: Total samples = 400
 Client 0: Train=320, Test=80
 Target sample: shape=torch.Size([1, 1, 28, 28]), label=0
@@ -49,11 +49,11 @@ Client 1: Total samples = 400
 Client 1: Train=320, Test=80
 Client 1 encrypting gradients...
 Client 1 gradient encryption completed
-Client 1 training completed. Avg loss: 1.3999
+Client 1 training completed. Avg loss: 2.7046
 Client 1: Total samples = 400
 Client 1: Train=320, Test=80
 Client 1 evaluation: 39/80 correct, accuracy: 0.4875
-Client 1: 320 samples, loss: 1.3999, eval_acc: 0.4875
+Client 1: 320 samples, loss: 2.7046, eval_acc: 0.4875
 Client 1: Total samples = 400
 Client 1: Train=320, Test=80
 Target sample: shape=torch.Size([1, 1, 28, 28]), label=5
@@ -71,11 +71,11 @@ Client 2: Total samples = 400
 Client 2: Train=320, Test=80
 Client 2 encrypting gradients...
 Client 2 gradient encryption completed
-Client 2 training completed. Avg loss: 1.6840
+Client 2 training completed. Avg loss: 2.7203
 Client 2: Total samples = 400
 Client 2: Train=320, Test=80
-Client 2 evaluation: 45/80 correct, accuracy: 0.5625
-Client 2: 320 samples, loss: 1.6840, eval_acc: 0.5625
+Client 2 evaluation: 40/80 correct, accuracy: 0.5000
+Client 2: 320 samples, loss: 2.7203, eval_acc: 0.5000
 Client 2: Total samples = 400
 Client 2: Train=320, Test=80
 Target sample: shape=torch.Size([1, 1, 28, 28]), label=3
@@ -93,18 +93,18 @@ Client 3: Total samples = 400
 Client 3: Train=320, Test=80
 Client 3 encrypting gradients...
 Client 3 gradient encryption completed
-Client 3 training completed. Avg loss: 1.6545
+Client 3 training completed. Avg loss: 2.0176
 Client 3: Total samples = 400
 Client 3: Train=320, Test=80
-Client 3 evaluation: 46/80 correct, accuracy: 0.5750
-Client 3: 320 samples, loss: 1.6545, eval_acc: 0.5750
+Client 3 evaluation: 57/80 correct, accuracy: 0.7125
+Client 3: 320 samples, loss: 2.0176, eval_acc: 0.7125
 Client 3: Total samples = 400
 Client 3: Train=320, Test=80
-Target sample: shape=torch.Size([1, 1, 28, 28]), label=3
+Target sample: shape=torch.Size([1, 1, 28, 28]), label=4
 Client 3 encrypting gradients...
 Client 3 gradient encryption completed
 HE attack data saved: idlg_inputs_he/round0_client3_he_attack_data.pt
-Sample label: 3
+Sample label: 4
 Encrypted gradients: 8 layer groups
 Original gradients: NOT SAVED (true HE protection)
 Generated HE attack data for Round 0, Client 3
@@ -115,44 +115,44 @@ Client 4: Total samples = 400
 Client 4: Train=320, Test=80
 Client 4 encrypting gradients...
 Client 4 gradient encryption completed
-Client 4 training completed. Avg loss: 1.1620
+Client 4 training completed. Avg loss: 2.5431
 Client 4: Total samples = 400
 Client 4: Train=320, Test=80
-Client 4 evaluation: 54/80 correct, accuracy: 0.6750
-Client 4: 320 samples, loss: 1.1620, eval_acc: 0.6750
+Client 4 evaluation: 43/80 correct, accuracy: 0.5375
+Client 4: 320 samples, loss: 2.5431, eval_acc: 0.5375
 Client 4: Total samples = 400
 Client 4: Train=320, Test=80
-Target sample: shape=torch.Size([1, 1, 28, 28]), label=6
+Target sample: shape=torch.Size([1, 1, 28, 28]), label=2
 Client 4 encrypting gradients...
 Client 4 gradient encryption completed
 HE attack data saved: idlg_inputs_he/round0_client4_he_attack_data.pt
-Sample label: 6
+Sample label: 2
 Encrypted gradients: 8 layer groups
 Original gradients: NOT SAVED (true HE protection)
 Generated HE attack data for Round 0, Client 4
 
 Round 1 Summary:
    Participating clients: 5/5
-   Average loss: 1.4019
-   Average accuracy: 0.5575
+   Average loss: 2.6131
+   Average accuracy: 0.5725
 
 Evaluating global model...
 Client 0: Total samples = 400
 Client 0: Train=320, Test=80
-Client 0 evaluation: 39/80 correct, accuracy: 0.4875
+Client 0 evaluation: 0/80 correct, accuracy: 0.0000
 Client 1: Total samples = 400
 Client 1: Train=320, Test=80
 Client 1 evaluation: 0/80 correct, accuracy: 0.0000
 Client 2: Total samples = 400
 Client 2: Train=320, Test=80
-Client 2 evaluation: 39/80 correct, accuracy: 0.4875
+Client 2 evaluation: 41/80 correct, accuracy: 0.5125
 Client 3: Total samples = 400
 Client 3: Train=320, Test=80
-Client 3 evaluation: 0/80 correct, accuracy: 0.0000
+Client 3 evaluation: 39/80 correct, accuracy: 0.4875
 Client 4: Total samples = 400
 Client 4: Train=320, Test=80
 Client 4 evaluation: 0/80 correct, accuracy: 0.0000
-Global model average accuracy: 0.1950
+Global model average accuracy: 0.2000
 
 ==================================================
 Round 2/5
@@ -164,11 +164,11 @@ Client 0: Total samples = 400
 Client 0: Train=320, Test=80
 Client 0 encrypting gradients...
 Client 0 gradient encryption completed
-Client 0 training completed. Avg loss: 2.0464
+Client 0 training completed. Avg loss: 1.0763
 Client 0: Total samples = 400
 Client 0: Train=320, Test=80
-Client 0 evaluation: 39/80 correct, accuracy: 0.4875
-Client 0: 320 samples, loss: 2.0464, eval_acc: 0.4875
+Client 0 evaluation: 54/80 correct, accuracy: 0.6750
+Client 0: 320 samples, loss: 1.0763, eval_acc: 0.6750
 Client 0: Total samples = 400
 Client 0: Train=320, Test=80
 Target sample: shape=torch.Size([1, 1, 28, 28]), label=7
@@ -186,11 +186,11 @@ Client 1: Total samples = 400
 Client 1: Train=320, Test=80
 Client 1 encrypting gradients...
 Client 1 gradient encryption completed
-Client 1 training completed. Avg loss: 1.0876
+Client 1 training completed. Avg loss: 1.2057
 Client 1: Total samples = 400
 Client 1: Train=320, Test=80
-Client 1 evaluation: 39/80 correct, accuracy: 0.4875
-Client 1: 320 samples, loss: 1.0876, eval_acc: 0.4875
+Client 1 evaluation: 41/80 correct, accuracy: 0.5125
+Client 1: 320 samples, loss: 1.2057, eval_acc: 0.5125
 Client 1: Total samples = 400
 Client 1: Train=320, Test=80
 Target sample: shape=torch.Size([1, 1, 28, 28]), label=5
@@ -208,18 +208,18 @@ Client 2: Total samples = 400
 Client 2: Train=320, Test=80
 Client 2 encrypting gradients...
 Client 2 gradient encryption completed
-Client 2 training completed. Avg loss: 0.9112
+Client 2 training completed. Avg loss: 1.2769
 Client 2: Total samples = 400
 Client 2: Train=320, Test=80
-Client 2 evaluation: 41/80 correct, accuracy: 0.5125
-Client 2: 320 samples, loss: 0.9112, eval_acc: 0.5125
+Client 2 evaluation: 39/80 correct, accuracy: 0.4875
+Client 2: 320 samples, loss: 1.2769, eval_acc: 0.4875
 Client 2: Total samples = 400
 Client 2: Train=320, Test=80
-Target sample: shape=torch.Size([1, 1, 28, 28]), label=3
+Target sample: shape=torch.Size([1, 1, 28, 28]), label=7
 Client 2 encrypting gradients...
 Client 2 gradient encryption completed
 HE attack data saved: idlg_inputs_he/round1_client2_he_attack_data.pt
-Sample label: 3
+Sample label: 7
 Encrypted gradients: 8 layer groups
 Original gradients: NOT SAVED (true HE protection)
 Generated HE attack data for Round 1, Client 2
@@ -230,11 +230,11 @@ Client 3: Total samples = 400
 Client 3: Train=320, Test=80
 Client 3 encrypting gradients...
 Client 3 gradient encryption completed
-Client 3 training completed. Avg loss: 1.0202
+Client 3 training completed. Avg loss: 1.4902
 Client 3: Total samples = 400
 Client 3: Train=320, Test=80
-Client 3 evaluation: 39/80 correct, accuracy: 0.4875
-Client 3: 320 samples, loss: 1.0202, eval_acc: 0.4875
+Client 3 evaluation: 41/80 correct, accuracy: 0.5125
+Client 3: 320 samples, loss: 1.4902, eval_acc: 0.5125
 Client 3: Total samples = 400
 Client 3: Train=320, Test=80
 Target sample: shape=torch.Size([1, 1, 28, 28]), label=4
@@ -252,26 +252,26 @@ Client 4: Total samples = 400
 Client 4: Train=320, Test=80
 Client 4 encrypting gradients...
 Client 4 gradient encryption completed
-Client 4 training completed. Avg loss: 1.0316
+Client 4 training completed. Avg loss: 1.5429
 Client 4: Total samples = 400
 Client 4: Train=320, Test=80
-Client 4 evaluation: 41/80 correct, accuracy: 0.5125
-Client 4: 320 samples, loss: 1.0316, eval_acc: 0.5125
+Client 4 evaluation: 39/80 correct, accuracy: 0.4875
+Client 4: 320 samples, loss: 1.5429, eval_acc: 0.4875
 Client 4: Total samples = 400
 Client 4: Train=320, Test=80
-Target sample: shape=torch.Size([1, 1, 28, 28]), label=2
+Target sample: shape=torch.Size([1, 1, 28, 28]), label=6
 Client 4 encrypting gradients...
 Client 4 gradient encryption completed
 HE attack data saved: idlg_inputs_he/round1_client4_he_attack_data.pt
-Sample label: 2
+Sample label: 6
 Encrypted gradients: 8 layer groups
 Original gradients: NOT SAVED (true HE protection)
 Generated HE attack data for Round 1, Client 4
 
 Round 2 Summary:
    Participating clients: 5/5
-   Average loss: 1.2194
-   Average accuracy: 0.4975
+   Average loss: 1.3184
+   Average accuracy: 0.5350
 
 Evaluating global model...
 Client 0: Total samples = 400
@@ -301,11 +301,11 @@ Client 0: Total samples = 400
 Client 0: Train=320, Test=80
 Client 0 encrypting gradients...
 Client 0 gradient encryption completed
-Client 0 training completed. Avg loss: 1.5195
+Client 0 training completed. Avg loss: 1.0107
 Client 0: Total samples = 400
 Client 0: Train=320, Test=80
-Client 0 evaluation: 72/80 correct, accuracy: 0.9000
-Client 0: 320 samples, loss: 1.5195, eval_acc: 0.9000
+Client 0 evaluation: 41/80 correct, accuracy: 0.5125
+Client 0: 320 samples, loss: 1.0107, eval_acc: 0.5125
 Client 0: Total samples = 400
 Client 0: Train=320, Test=80
 Target sample: shape=torch.Size([1, 1, 28, 28]), label=0
@@ -323,11 +323,11 @@ Client 1: Total samples = 400
 Client 1: Train=320, Test=80
 Client 1 encrypting gradients...
 Client 1 gradient encryption completed
-Client 1 training completed. Avg loss: 0.9489
+Client 1 training completed. Avg loss: 0.9101
 Client 1: Total samples = 400
 Client 1: Train=320, Test=80
-Client 1 evaluation: 39/80 correct, accuracy: 0.4875
-Client 1: 320 samples, loss: 0.9489, eval_acc: 0.4875
+Client 1 evaluation: 40/80 correct, accuracy: 0.5000
+Client 1: 320 samples, loss: 0.9101, eval_acc: 0.5000
 Client 1: Total samples = 400
 Client 1: Train=320, Test=80
 Target sample: shape=torch.Size([1, 1, 28, 28]), label=2
@@ -345,18 +345,18 @@ Client 2: Total samples = 400
 Client 2: Train=320, Test=80
 Client 2 encrypting gradients...
 Client 2 gradient encryption completed
-Client 2 training completed. Avg loss: 1.4673
+Client 2 training completed. Avg loss: 2.9977
 Client 2: Total samples = 400
 Client 2: Train=320, Test=80
-Client 2 evaluation: 57/80 correct, accuracy: 0.7125
-Client 2: 320 samples, loss: 1.4673, eval_acc: 0.7125
+Client 2 evaluation: 39/80 correct, accuracy: 0.4875
+Client 2: 320 samples, loss: 2.9977, eval_acc: 0.4875
 Client 2: Total samples = 400
 Client 2: Train=320, Test=80
-Target sample: shape=torch.Size([1, 1, 28, 28]), label=7
+Target sample: shape=torch.Size([1, 1, 28, 28]), label=3
 Client 2 encrypting gradients...
 Client 2 gradient encryption completed
 HE attack data saved: idlg_inputs_he/round2_client2_he_attack_data.pt
-Sample label: 7
+Sample label: 3
 Encrypted gradients: 8 layer groups
 Original gradients: NOT SAVED (true HE protection)
 Generated HE attack data for Round 2, Client 2
@@ -367,18 +367,18 @@ Client 3: Total samples = 400
 Client 3: Train=320, Test=80
 Client 3 encrypting gradients...
 Client 3 gradient encryption completed
-Client 3 training completed. Avg loss: 0.9769
+Client 3 training completed. Avg loss: 3.0978
 Client 3: Total samples = 400
 Client 3: Train=320, Test=80
-Client 3 evaluation: 39/80 correct, accuracy: 0.4875
-Client 3: 320 samples, loss: 0.9769, eval_acc: 0.4875
+Client 3 evaluation: 41/80 correct, accuracy: 0.5125
+Client 3: 320 samples, loss: 3.0978, eval_acc: 0.5125
 Client 3: Total samples = 400
 Client 3: Train=320, Test=80
-Target sample: shape=torch.Size([1, 1, 28, 28]), label=3
+Target sample: shape=torch.Size([1, 1, 28, 28]), label=4
 Client 3 encrypting gradients...
 Client 3 gradient encryption completed
 HE attack data saved: idlg_inputs_he/round2_client3_he_attack_data.pt
-Sample label: 3
+Sample label: 4
 Encrypted gradients: 8 layer groups
 Original gradients: NOT SAVED (true HE protection)
 Generated HE attack data for Round 2, Client 3
@@ -389,44 +389,44 @@ Client 4: Total samples = 400
 Client 4: Train=320, Test=80
 Client 4 encrypting gradients...
 Client 4 gradient encryption completed
-Client 4 training completed. Avg loss: 0.9941
+Client 4 training completed. Avg loss: 1.0211
 Client 4: Total samples = 400
 Client 4: Train=320, Test=80
 Client 4 evaluation: 39/80 correct, accuracy: 0.4875
-Client 4: 320 samples, loss: 0.9941, eval_acc: 0.4875
+Client 4: 320 samples, loss: 1.0211, eval_acc: 0.4875
 Client 4: Total samples = 400
 Client 4: Train=320, Test=80
-Target sample: shape=torch.Size([1, 1, 28, 28]), label=6
+Target sample: shape=torch.Size([1, 1, 28, 28]), label=2
 Client 4 encrypting gradients...
 Client 4 gradient encryption completed
 HE attack data saved: idlg_inputs_he/round2_client4_he_attack_data.pt
-Sample label: 6
+Sample label: 2
 Encrypted gradients: 8 layer groups
 Original gradients: NOT SAVED (true HE protection)
 Generated HE attack data for Round 2, Client 4
 
 Round 3 Summary:
    Participating clients: 5/5
-   Average loss: 1.1814
-   Average accuracy: 0.6150
+   Average loss: 1.8075
+   Average accuracy: 0.5000
 
 Evaluating global model...
 Client 0: Total samples = 400
 Client 0: Train=320, Test=80
-Client 0 evaluation: 14/80 correct, accuracy: 0.1750
+Client 0 evaluation: 28/80 correct, accuracy: 0.3500
 Client 1: Total samples = 400
 Client 1: Train=320, Test=80
 Client 1 evaluation: 0/80 correct, accuracy: 0.0000
 Client 2: Total samples = 400
 Client 2: Train=320, Test=80
-Client 2 evaluation: 45/80 correct, accuracy: 0.5625
+Client 2 evaluation: 26/80 correct, accuracy: 0.3250
 Client 3: Total samples = 400
 Client 3: Train=320, Test=80
-Client 3 evaluation: 38/80 correct, accuracy: 0.4750
+Client 3 evaluation: 10/80 correct, accuracy: 0.1250
 Client 4: Total samples = 400
 Client 4: Train=320, Test=80
 Client 4 evaluation: 0/80 correct, accuracy: 0.0000
-Global model average accuracy: 0.2425
+Global model average accuracy: 0.1600
 
 ==================================================
 Round 4/5
@@ -438,11 +438,11 @@ Client 0: Total samples = 400
 Client 0: Train=320, Test=80
 Client 0 encrypting gradients...
 Client 0 gradient encryption completed
-Client 0 training completed. Avg loss: 0.7437
+Client 0 training completed. Avg loss: 0.7918
 Client 0: Total samples = 400
 Client 0: Train=320, Test=80
-Client 0 evaluation: 68/80 correct, accuracy: 0.8500
-Client 0: 320 samples, loss: 0.7437, eval_acc: 0.8500
+Client 0 evaluation: 57/80 correct, accuracy: 0.7125
+Client 0: 320 samples, loss: 0.7918, eval_acc: 0.7125
 Client 0: Total samples = 400
 Client 0: Train=320, Test=80
 Target sample: shape=torch.Size([1, 1, 28, 28]), label=7
@@ -460,18 +460,18 @@ Client 1: Total samples = 400
 Client 1: Train=320, Test=80
 Client 1 encrypting gradients...
 Client 1 gradient encryption completed
-Client 1 training completed. Avg loss: 1.9097
+Client 1 training completed. Avg loss: 1.5496
 Client 1: Total samples = 400
 Client 1: Train=320, Test=80
-Client 1 evaluation: 39/80 correct, accuracy: 0.4875
-Client 1: 320 samples, loss: 1.9097, eval_acc: 0.4875
+Client 1 evaluation: 45/80 correct, accuracy: 0.5625
+Client 1: 320 samples, loss: 1.5496, eval_acc: 0.5625
 Client 1: Total samples = 400
 Client 1: Train=320, Test=80
-Target sample: shape=torch.Size([1, 1, 28, 28]), label=5
+Target sample: shape=torch.Size([1, 1, 28, 28]), label=2
 Client 1 encrypting gradients...
 Client 1 gradient encryption completed
 HE attack data saved: idlg_inputs_he/round3_client1_he_attack_data.pt
-Sample label: 5
+Sample label: 2
 Encrypted gradients: 8 layer groups
 Original gradients: NOT SAVED (true HE protection)
 Generated HE attack data for Round 3, Client 1
@@ -482,18 +482,18 @@ Client 2: Total samples = 400
 Client 2: Train=320, Test=80
 Client 2 encrypting gradients...
 Client 2 gradient encryption completed
-Client 2 training completed. Avg loss: 0.6367
+Client 2 training completed. Avg loss: 0.8903
 Client 2: Total samples = 400
 Client 2: Train=320, Test=80
 Client 2 evaluation: 43/80 correct, accuracy: 0.5375
-Client 2: 320 samples, loss: 0.6367, eval_acc: 0.5375
+Client 2: 320 samples, loss: 0.8903, eval_acc: 0.5375
 Client 2: Total samples = 400
 Client 2: Train=320, Test=80
-Target sample: shape=torch.Size([1, 1, 28, 28]), label=3
+Target sample: shape=torch.Size([1, 1, 28, 28]), label=7
 Client 2 encrypting gradients...
 Client 2 gradient encryption completed
 HE attack data saved: idlg_inputs_he/round3_client2_he_attack_data.pt
-Sample label: 3
+Sample label: 7
 Encrypted gradients: 8 layer groups
 Original gradients: NOT SAVED (true HE protection)
 Generated HE attack data for Round 3, Client 2
@@ -504,18 +504,18 @@ Client 3: Total samples = 400
 Client 3: Train=320, Test=80
 Client 3 encrypting gradients...
 Client 3 gradient encryption completed
-Client 3 training completed. Avg loss: 1.2233
+Client 3 training completed. Avg loss: 0.8080
 Client 3: Total samples = 400
 Client 3: Train=320, Test=80
-Client 3 evaluation: 64/80 correct, accuracy: 0.8000
-Client 3: 320 samples, loss: 1.2233, eval_acc: 0.8000
+Client 3 evaluation: 65/80 correct, accuracy: 0.8125
+Client 3: 320 samples, loss: 0.8080, eval_acc: 0.8125
 Client 3: Total samples = 400
 Client 3: Train=320, Test=80
-Target sample: shape=torch.Size([1, 1, 28, 28]), label=3
+Target sample: shape=torch.Size([1, 1, 28, 28]), label=4
 Client 3 encrypting gradients...
 Client 3 gradient encryption completed
 HE attack data saved: idlg_inputs_he/round3_client3_he_attack_data.pt
-Sample label: 3
+Sample label: 4
 Encrypted gradients: 8 layer groups
 Original gradients: NOT SAVED (true HE protection)
 Generated HE attack data for Round 3, Client 3
@@ -526,11 +526,11 @@ Client 4: Total samples = 400
 Client 4: Train=320, Test=80
 Client 4 encrypting gradients...
 Client 4 gradient encryption completed
-Client 4 training completed. Avg loss: 1.6963
+Client 4 training completed. Avg loss: 1.3379
 Client 4: Total samples = 400
 Client 4: Train=320, Test=80
-Client 4 evaluation: 39/80 correct, accuracy: 0.4875
-Client 4: 320 samples, loss: 1.6963, eval_acc: 0.4875
+Client 4 evaluation: 46/80 correct, accuracy: 0.5750
+Client 4: 320 samples, loss: 1.3379, eval_acc: 0.5750
 Client 4: Total samples = 400
 Client 4: Train=320, Test=80
 Target sample: shape=torch.Size([1, 1, 28, 28]), label=2
@@ -544,8 +544,8 @@ Generated HE attack data for Round 3, Client 4
 
 Round 4 Summary:
    Participating clients: 5/5
-   Average loss: 1.2419
-   Average accuracy: 0.6325
+   Average loss: 1.0755
+   Average accuracy: 0.6400
 
 Evaluating global model...
 Client 0: Total samples = 400
@@ -575,18 +575,18 @@ Client 0: Total samples = 400
 Client 0: Train=320, Test=80
 Client 0 encrypting gradients...
 Client 0 gradient encryption completed
-Client 0 training completed. Avg loss: 1.1596
+Client 0 training completed. Avg loss: 1.2623
 Client 0: Total samples = 400
 Client 0: Train=320, Test=80
-Client 0 evaluation: 47/80 correct, accuracy: 0.5875
-Client 0: 320 samples, loss: 1.1596, eval_acc: 0.5875
+Client 0 evaluation: 49/80 correct, accuracy: 0.6125
+Client 0: 320 samples, loss: 1.2623, eval_acc: 0.6125
 Client 0: Total samples = 400
 Client 0: Train=320, Test=80
-Target sample: shape=torch.Size([1, 1, 28, 28]), label=0
+Target sample: shape=torch.Size([1, 1, 28, 28]), label=7
 Client 0 encrypting gradients...
 Client 0 gradient encryption completed
 HE attack data saved: idlg_inputs_he/round4_client0_he_attack_data.pt
-Sample label: 0
+Sample label: 7
 Encrypted gradients: 8 layer groups
 Original gradients: NOT SAVED (true HE protection)
 Generated HE attack data for Round 4, Client 0
@@ -597,18 +597,18 @@ Client 1: Total samples = 400
 Client 1: Train=320, Test=80
 Client 1 encrypting gradients...
 Client 1 gradient encryption completed
-Client 1 training completed. Avg loss: 0.9188
+Client 1 training completed. Avg loss: 0.9142
 Client 1: Total samples = 400
 Client 1: Train=320, Test=80
-Client 1 evaluation: 39/80 correct, accuracy: 0.4875
-Client 1: 320 samples, loss: 0.9188, eval_acc: 0.4875
+Client 1 evaluation: 51/80 correct, accuracy: 0.6375
+Client 1: 320 samples, loss: 0.9142, eval_acc: 0.6375
 Client 1: Total samples = 400
 Client 1: Train=320, Test=80
-Target sample: shape=torch.Size([1, 1, 28, 28]), label=5
+Target sample: shape=torch.Size([1, 1, 28, 28]), label=2
 Client 1 encrypting gradients...
 Client 1 gradient encryption completed
 HE attack data saved: idlg_inputs_he/round4_client1_he_attack_data.pt
-Sample label: 5
+Sample label: 2
 Encrypted gradients: 8 layer groups
 Original gradients: NOT SAVED (true HE protection)
 Generated HE attack data for Round 4, Client 1
@@ -619,18 +619,18 @@ Client 2: Total samples = 400
 Client 2: Train=320, Test=80
 Client 2 encrypting gradients...
 Client 2 gradient encryption completed
-Client 2 training completed. Avg loss: 1.5956
+Client 2 training completed. Avg loss: 1.1063
 Client 2: Total samples = 400
 Client 2: Train=320, Test=80
-Client 2 evaluation: 39/80 correct, accuracy: 0.4875
-Client 2: 320 samples, loss: 1.5956, eval_acc: 0.4875
+Client 2 evaluation: 64/80 correct, accuracy: 0.8000
+Client 2: 320 samples, loss: 1.1063, eval_acc: 0.8000
 Client 2: Total samples = 400
 Client 2: Train=320, Test=80
-Target sample: shape=torch.Size([1, 1, 28, 28]), label=3
+Target sample: shape=torch.Size([1, 1, 28, 28]), label=7
 Client 2 encrypting gradients...
 Client 2 gradient encryption completed
 HE attack data saved: idlg_inputs_he/round4_client2_he_attack_data.pt
-Sample label: 3
+Sample label: 7
 Encrypted gradients: 8 layer groups
 Original gradients: NOT SAVED (true HE protection)
 Generated HE attack data for Round 4, Client 2
@@ -641,18 +641,18 @@ Client 3: Total samples = 400
 Client 3: Train=320, Test=80
 Client 3 encrypting gradients...
 Client 3 gradient encryption completed
-Client 3 training completed. Avg loss: 1.4189
+Client 3 training completed. Avg loss: 1.5319
 Client 3: Total samples = 400
 Client 3: Train=320, Test=80
-Client 3 evaluation: 41/80 correct, accuracy: 0.5125
-Client 3: 320 samples, loss: 1.4189, eval_acc: 0.5125
+Client 3 evaluation: 39/80 correct, accuracy: 0.4875
+Client 3: 320 samples, loss: 1.5319, eval_acc: 0.4875
 Client 3: Total samples = 400
 Client 3: Train=320, Test=80
-Target sample: shape=torch.Size([1, 1, 28, 28]), label=3
+Target sample: shape=torch.Size([1, 1, 28, 28]), label=4
 Client 3 encrypting gradients...
 Client 3 gradient encryption completed
 HE attack data saved: idlg_inputs_he/round4_client3_he_attack_data.pt
-Sample label: 3
+Sample label: 4
 Encrypted gradients: 8 layer groups
 Original gradients: NOT SAVED (true HE protection)
 Generated HE attack data for Round 4, Client 3
@@ -663,26 +663,26 @@ Client 4: Total samples = 400
 Client 4: Train=320, Test=80
 Client 4 encrypting gradients...
 Client 4 gradient encryption completed
-Client 4 training completed. Avg loss: 0.8133
+Client 4 training completed. Avg loss: 0.8932
 Client 4: Total samples = 400
 Client 4: Train=320, Test=80
-Client 4 evaluation: 39/80 correct, accuracy: 0.4875
-Client 4: 320 samples, loss: 0.8133, eval_acc: 0.4875
+Client 4 evaluation: 40/80 correct, accuracy: 0.5000
+Client 4: 320 samples, loss: 0.8932, eval_acc: 0.5000
 Client 4: Total samples = 400
 Client 4: Train=320, Test=80
-Target sample: shape=torch.Size([1, 1, 28, 28]), label=2
+Target sample: shape=torch.Size([1, 1, 28, 28]), label=6
 Client 4 encrypting gradients...
 Client 4 gradient encryption completed
 HE attack data saved: idlg_inputs_he/round4_client4_he_attack_data.pt
-Sample label: 2
+Sample label: 6
 Encrypted gradients: 8 layer groups
 Original gradients: NOT SAVED (true HE protection)
 Generated HE attack data for Round 4, Client 4
 
 Round 5 Summary:
    Participating clients: 5/5
-   Average loss: 1.1812
-   Average accuracy: 0.5125
+   Average loss: 1.1416
+   Average accuracy: 0.6075
 
 Evaluating global model...
 Client 0: Total samples = 400

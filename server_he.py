@@ -13,7 +13,7 @@ class ServerHE:
         
         # Generate Paillier keypair
         print("Generating Paillier keypair...")
-        self.public_key, self.private_key = paillier.generate_paillier_keypair(n_length=128)
+        self.public_key, self.private_key = paillier.generate_paillier_keypair(n_length=512)
         print("Paillier keypair generated successfully")
         
         # Initialize clients
