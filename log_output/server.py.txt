@@ -1,0 +1,487 @@
+server.py
+
+
+(DP_final) kenneth@DESKTOP-O3O41CP:/mnt/c/Users/Kenneth/Desktop/dp_final$ python server.py
+Starting 5-Round Federated Learning with iDLG Attack Data Generation
+======================================================================
+Using device: cuda
+Server initialized with 5 clients
+Planning 5 federated learning rounds
+Expected to generate 25 iDLG attack data files
+
+==================================================
+FEDERATED LEARNING ROUND 1/5
+==================================================
+
+--- Client 0 Training ---
+Client 0: Total samples = 400
+Client 0: Train=320, Test=80
+  Client 0 Epoch 1/2: Loss=1.9326, Acc=0.3688, Samples=320
+  Client 0 Epoch 2/2: Loss=0.7916, Acc=0.5188, Samples=320
+Client 0: Total samples = 400
+Client 0: Train=320, Test=80
+Client 0: 640 samples, accuracy: 0.6000
+Generating iDLG attack data for Client 0, Round 0
+Client 0: Total samples = 400
+Client 0: Train=320, Test=80
+Target sample: shape=torch.Size([1, 1, 28, 28]), label=0
+Attack data saved: idlg_inputs/round0_client0_attack_data.pt
+Gradient norm: 43.267757
+Sample label: 0
+
+--- Client 1 Training ---
+Client 1: Total samples = 400
+Client 1: Train=320, Test=80
+  Client 1 Epoch 1/2: Loss=3.0019, Acc=0.3563, Samples=320
+  Client 1 Epoch 2/2: Loss=0.7095, Acc=0.5656, Samples=320
+Client 1: Total samples = 400
+Client 1: Train=320, Test=80
+Client 1: 640 samples, accuracy: 0.6500
+Generating iDLG attack data for Client 1, Round 0
+Client 1: Total samples = 400
+Client 1: Train=320, Test=80
+Target sample: shape=torch.Size([1, 1, 28, 28]), label=2
+Attack data saved: idlg_inputs/round0_client1_attack_data.pt
+Gradient norm: 42.905461
+Sample label: 2
+
+--- Client 2 Training ---
+Client 2: Total samples = 400
+Client 2: Train=320, Test=80
+  Client 2 Epoch 1/2: Loss=2.5332, Acc=0.2562, Samples=320
+  Client 2 Epoch 2/2: Loss=0.6541, Acc=0.6125, Samples=320
+Client 2: Total samples = 400
+Client 2: Train=320, Test=80
+Client 2: 640 samples, accuracy: 0.5625
+Generating iDLG attack data for Client 2, Round 0
+Client 2: Total samples = 400
+Client 2: Train=320, Test=80
+Target sample: shape=torch.Size([1, 1, 28, 28]), label=3
+Attack data saved: idlg_inputs/round0_client2_attack_data.pt
+Gradient norm: 38.467743
+Sample label: 3
+
+--- Client 3 Training ---
+Client 3: Total samples = 400
+Client 3: Train=320, Test=80
+  Client 3 Epoch 1/2: Loss=4.3976, Acc=0.1750, Samples=320
+  Client 3 Epoch 2/2: Loss=0.8088, Acc=0.5156, Samples=320
+Client 3: Total samples = 400
+Client 3: Train=320, Test=80
+Client 3: 640 samples, accuracy: 0.6250
+Generating iDLG attack data for Client 3, Round 0
+Client 3: Total samples = 400
+Client 3: Train=320, Test=80
+Target sample: shape=torch.Size([1, 1, 28, 28]), label=3
+Attack data saved: idlg_inputs/round0_client3_attack_data.pt
+Gradient norm: 38.078271
+Sample label: 3
+
+--- Client 4 Training ---
+Client 4: Total samples = 400
+Client 4: Train=320, Test=80
+  Client 4 Epoch 1/2: Loss=1.5660, Acc=0.3937, Samples=320
+  Client 4 Epoch 2/2: Loss=0.6031, Acc=0.6406, Samples=320
+Client 4: Total samples = 400
+Client 4: Train=320, Test=80
+Client 4: 640 samples, accuracy: 0.7875
+Generating iDLG attack data for Client 4, Round 0
+Client 4: Total samples = 400
+Client 4: Train=320, Test=80
+Target sample: shape=torch.Size([1, 1, 28, 28]), label=2
+Attack data saved: idlg_inputs/round0_client4_attack_data.pt
+Gradient norm: 39.839453
+Sample label: 2
+
+Round 1 Summary:
+   Participating clients: 5/5
+   Total samples: 3200
+   Average samples per client: 640.0
+
+==================================================
+FEDERATED LEARNING ROUND 2/5
+==================================================
+
+--- Client 0 Training ---
+Client 0: Total samples = 400
+Client 0: Train=320, Test=80
+  Client 0 Epoch 1/2: Loss=0.8154, Acc=0.5250, Samples=320
+  Client 0 Epoch 2/2: Loss=0.5470, Acc=0.7094, Samples=320
+Client 0: Total samples = 400
+Client 0: Train=320, Test=80
+Client 0: 640 samples, accuracy: 0.8750
+Generating iDLG attack data for Client 0, Round 1
+Client 0: Total samples = 400
+Client 0: Train=320, Test=80
+Target sample: shape=torch.Size([1, 1, 28, 28]), label=7
+Attack data saved: idlg_inputs/round1_client0_attack_data.pt
+Gradient norm: 31.957439
+Sample label: 7
+
+--- Client 1 Training ---
+Client 1: Total samples = 400
+Client 1: Train=320, Test=80
+  Client 1 Epoch 1/2: Loss=1.5901, Acc=0.4437, Samples=320
+  Client 1 Epoch 2/2: Loss=0.6060, Acc=0.6344, Samples=320
+Client 1: Total samples = 400
+Client 1: Train=320, Test=80
+Client 1: 640 samples, accuracy: 0.6625
+Generating iDLG attack data for Client 1, Round 1
+Client 1: Total samples = 400
+Client 1: Train=320, Test=80
+Target sample: shape=torch.Size([1, 1, 28, 28]), label=2
+Attack data saved: idlg_inputs/round1_client1_attack_data.pt
+Gradient norm: 36.964177
+Sample label: 2
+
+--- Client 2 Training ---
+Client 2: Total samples = 400
+Client 2: Train=320, Test=80
+  Client 2 Epoch 1/2: Loss=0.7896, Acc=0.7063, Samples=320
+  Client 2 Epoch 2/2: Loss=0.4499, Acc=0.8531, Samples=320
+Client 2: Total samples = 400
+Client 2: Train=320, Test=80
+Client 2: 640 samples, accuracy: 0.8125
+Generating iDLG attack data for Client 2, Round 1
+Client 2: Total samples = 400
+Client 2: Train=320, Test=80
+Target sample: shape=torch.Size([1, 1, 28, 28]), label=7
+Attack data saved: idlg_inputs/round1_client2_attack_data.pt
+Gradient norm: 30.536637
+Sample label: 7
+
+--- Client 3 Training ---
+Client 3: Total samples = 400
+Client 3: Train=320, Test=80
+  Client 3 Epoch 1/2: Loss=1.6223, Acc=0.4188, Samples=320
+  Client 3 Epoch 2/2: Loss=0.7120, Acc=0.5969, Samples=320
+Client 3: Total samples = 400
+Client 3: Train=320, Test=80
+Client 3: 640 samples, accuracy: 0.6125
+Generating iDLG attack data for Client 3, Round 1
+Client 3: Total samples = 400
+Client 3: Train=320, Test=80
+Target sample: shape=torch.Size([1, 1, 28, 28]), label=3
+Attack data saved: idlg_inputs/round1_client3_attack_data.pt
+Gradient norm: 28.976369
+Sample label: 3
+
+--- Client 4 Training ---
+Client 4: Total samples = 400
+Client 4: Train=320, Test=80
+  Client 4 Epoch 1/2: Loss=1.0592, Acc=0.5281, Samples=320
+  Client 4 Epoch 2/2: Loss=0.5854, Acc=0.6594, Samples=320
+Client 4: Total samples = 400
+Client 4: Train=320, Test=80
+Client 4: 640 samples, accuracy: 0.4875
+Generating iDLG attack data for Client 4, Round 1
+Client 4: Total samples = 400
+Client 4: Train=320, Test=80
+Target sample: shape=torch.Size([1, 1, 28, 28]), label=6
+Attack data saved: idlg_inputs/round1_client4_attack_data.pt
+Gradient norm: 34.697815
+Sample label: 6
+
+Round 2 Summary:
+   Participating clients: 5/5
+   Total samples: 3200
+   Average samples per client: 640.0
+
+==================================================
+FEDERATED LEARNING ROUND 3/5
+==================================================
+
+--- Client 0 Training ---
+Client 0: Total samples = 400
+Client 0: Train=320, Test=80
+  Client 0 Epoch 1/2: Loss=0.7940, Acc=0.6594, Samples=320
+  Client 0 Epoch 2/2: Loss=0.4445, Acc=0.8969, Samples=320
+Client 0: Total samples = 400
+Client 0: Train=320, Test=80
+Client 0: 640 samples, accuracy: 0.8750
+Generating iDLG attack data for Client 0, Round 2
+Client 0: Total samples = 400
+Client 0: Train=320, Test=80
+Target sample: shape=torch.Size([1, 1, 28, 28]), label=7
+Attack data saved: idlg_inputs/round2_client0_attack_data.pt
+Gradient norm: 24.849947
+Sample label: 7
+
+--- Client 1 Training ---
+Client 1: Total samples = 400
+Client 1: Train=320, Test=80
+  Client 1 Epoch 1/2: Loss=1.4611, Acc=0.4875, Samples=320
+  Client 1 Epoch 2/2: Loss=0.6209, Acc=0.6500, Samples=320
+Client 1: Total samples = 400
+Client 1: Train=320, Test=80
+Client 1: 640 samples, accuracy: 0.7750
+Generating iDLG attack data for Client 1, Round 2
+Client 1: Total samples = 400
+Client 1: Train=320, Test=80
+Target sample: shape=torch.Size([1, 1, 28, 28]), label=2
+Attack data saved: idlg_inputs/round2_client1_attack_data.pt
+Gradient norm: 35.319143
+Sample label: 2
+
+--- Client 2 Training ---
+Client 2: Total samples = 400
+Client 2: Train=320, Test=80
+  Client 2 Epoch 1/2: Loss=0.5611, Acc=0.8562, Samples=320
+  Client 2 Epoch 2/2: Loss=0.3585, Acc=0.9125, Samples=320
+Client 2: Total samples = 400
+Client 2: Train=320, Test=80
+Client 2: 640 samples, accuracy: 0.9375
+Generating iDLG attack data for Client 2, Round 2
+Client 2: Total samples = 400
+Client 2: Train=320, Test=80
+Target sample: shape=torch.Size([1, 1, 28, 28]), label=3
+Attack data saved: idlg_inputs/round2_client2_attack_data.pt
+Gradient norm: 22.048140
+Sample label: 3
+
+--- Client 3 Training ---
+Client 3: Total samples = 400
+Client 3: Train=320, Test=80
+  Client 3 Epoch 1/2: Loss=1.3060, Acc=0.5188, Samples=320
+  Client 3 Epoch 2/2: Loss=0.5431, Acc=0.8094, Samples=320
+Client 3: Total samples = 400
+Client 3: Train=320, Test=80
+Client 3: 640 samples, accuracy: 0.8000
+Generating iDLG attack data for Client 3, Round 2
+Client 3: Total samples = 400
+Client 3: Train=320, Test=80
+Target sample: shape=torch.Size([1, 1, 28, 28]), label=3
+Attack data saved: idlg_inputs/round2_client3_attack_data.pt
+Gradient norm: 19.961935
+Sample label: 3
+
+--- Client 4 Training ---
+Client 4: Total samples = 400
+Client 4: Train=320, Test=80
+  Client 4 Epoch 1/2: Loss=0.9929, Acc=0.5813, Samples=320
+  Client 4 Epoch 2/2: Loss=0.4724, Acc=0.8500, Samples=320
+Client 4: Total samples = 400
+Client 4: Train=320, Test=80
+Client 4: 640 samples, accuracy: 0.9000
+Generating iDLG attack data for Client 4, Round 2
+Client 4: Total samples = 400
+Client 4: Train=320, Test=80
+Target sample: shape=torch.Size([1, 1, 28, 28]), label=2
+Attack data saved: idlg_inputs/round2_client4_attack_data.pt
+Gradient norm: 38.576841
+Sample label: 2
+
+Round 3 Summary:
+   Participating clients: 5/5
+   Total samples: 3200
+   Average samples per client: 640.0
+
+==================================================
+FEDERATED LEARNING ROUND 4/5
+==================================================
+
+--- Client 0 Training ---
+Client 0: Total samples = 400
+Client 0: Train=320, Test=80
+  Client 0 Epoch 1/2: Loss=0.8356, Acc=0.6750, Samples=320
+  Client 0 Epoch 2/2: Loss=0.4112, Acc=0.9125, Samples=320
+Client 0: Total samples = 400
+Client 0: Train=320, Test=80
+Client 0: 640 samples, accuracy: 0.8875
+Generating iDLG attack data for Client 0, Round 3
+Client 0: Total samples = 400
+Client 0: Train=320, Test=80
+Target sample: shape=torch.Size([1, 1, 28, 28]), label=7
+Attack data saved: idlg_inputs/round3_client0_attack_data.pt
+Gradient norm: 34.150605
+Sample label: 7
+
+--- Client 1 Training ---
+Client 1: Total samples = 400
+Client 1: Train=320, Test=80
+  Client 1 Epoch 1/2: Loss=1.2442, Acc=0.5125, Samples=320
+  Client 1 Epoch 2/2: Loss=0.5693, Acc=0.7000, Samples=320
+Client 1: Total samples = 400
+Client 1: Train=320, Test=80
+Client 1: 640 samples, accuracy: 0.8250
+Generating iDLG attack data for Client 1, Round 3
+Client 1: Total samples = 400
+Client 1: Train=320, Test=80
+Target sample: shape=torch.Size([1, 1, 28, 28]), label=5
+Attack data saved: idlg_inputs/round3_client1_attack_data.pt
+Gradient norm: 37.456749
+Sample label: 5
+
+--- Client 2 Training ---
+Client 2: Total samples = 400
+Client 2: Train=320, Test=80
+  Client 2 Epoch 1/2: Loss=0.4772, Acc=0.8844, Samples=320
+  Client 2 Epoch 2/2: Loss=0.3133, Acc=0.9125, Samples=320
+Client 2: Total samples = 400
+Client 2: Train=320, Test=80
+Client 2: 640 samples, accuracy: 0.9625
+Generating iDLG attack data for Client 2, Round 3
+Client 2: Total samples = 400
+Client 2: Train=320, Test=80
+Target sample: shape=torch.Size([1, 1, 28, 28]), label=3
+Attack data saved: idlg_inputs/round3_client2_attack_data.pt
+Gradient norm: 26.650081
+Sample label: 3
+
+--- Client 3 Training ---
+Client 3: Total samples = 400
+Client 3: Train=320, Test=80
+  Client 3 Epoch 1/2: Loss=1.2089, Acc=0.6156, Samples=320
+  Client 3 Epoch 2/2: Loss=0.4609, Acc=0.8812, Samples=320
+Client 3: Total samples = 400
+Client 3: Train=320, Test=80
+Client 3: 640 samples, accuracy: 0.9000
+Generating iDLG attack data for Client 3, Round 3
+Client 3: Total samples = 400
+Client 3: Train=320, Test=80
+Target sample: shape=torch.Size([1, 1, 28, 28]), label=4
+Attack data saved: idlg_inputs/round3_client3_attack_data.pt
+Gradient norm: 40.327069
+Sample label: 4
+
+--- Client 4 Training ---
+Client 4: Total samples = 400
+Client 4: Train=320, Test=80
+  Client 4 Epoch 1/2: Loss=0.9220, Acc=0.5969, Samples=320
+  Client 4 Epoch 2/2: Loss=0.4949, Acc=0.7688, Samples=320
+Client 4: Total samples = 400
+Client 4: Train=320, Test=80
+Client 4: 640 samples, accuracy: 0.8375
+Generating iDLG attack data for Client 4, Round 3
+Client 4: Total samples = 400
+Client 4: Train=320, Test=80
+Target sample: shape=torch.Size([1, 1, 28, 28]), label=6
+Attack data saved: idlg_inputs/round3_client4_attack_data.pt
+Gradient norm: 42.464337
+Sample label: 6
+
+Round 4 Summary:
+   Participating clients: 5/5
+   Total samples: 3200
+   Average samples per client: 640.0
+
+==================================================
+FEDERATED LEARNING ROUND 5/5
+==================================================
+
+--- Client 0 Training ---
+Client 0: Total samples = 400
+Client 0: Train=320, Test=80
+  Client 0 Epoch 1/2: Loss=0.7626, Acc=0.7344, Samples=320
+  Client 0 Epoch 2/2: Loss=0.3665, Acc=0.9625, Samples=320
+Client 0: Total samples = 400
+Client 0: Train=320, Test=80
+Client 0: 640 samples, accuracy: 0.9125
+Generating iDLG attack data for Client 0, Round 4
+Client 0: Total samples = 400
+Client 0: Train=320, Test=80
+Target sample: shape=torch.Size([1, 1, 28, 28]), label=0
+Attack data saved: idlg_inputs/round4_client0_attack_data.pt
+Gradient norm: 41.243051
+Sample label: 0
+
+--- Client 1 Training ---
+Client 1: Total samples = 400
+Client 1: Train=320, Test=80
+  Client 1 Epoch 1/2: Loss=1.2084, Acc=0.5062, Samples=320
+  Client 1 Epoch 2/2: Loss=0.5347, Acc=0.7906, Samples=320
+Client 1: Total samples = 400
+Client 1: Train=320, Test=80
+Client 1: 640 samples, accuracy: 0.7625
+Generating iDLG attack data for Client 1, Round 4
+Client 1: Total samples = 400
+Client 1: Train=320, Test=80
+Target sample: shape=torch.Size([1, 1, 28, 28]), label=2
+Attack data saved: idlg_inputs/round4_client1_attack_data.pt
+Gradient norm: 40.119850
+Sample label: 2
+
+--- Client 2 Training ---
+Client 2: Total samples = 400
+Client 2: Train=320, Test=80
+  Client 2 Epoch 1/2: Loss=0.4157, Acc=0.8875, Samples=320
+  Client 2 Epoch 2/2: Loss=0.3064, Acc=0.9000, Samples=320
+Client 2: Total samples = 400
+Client 2: Train=320, Test=80
+Client 2: 640 samples, accuracy: 0.9250
+Generating iDLG attack data for Client 2, Round 4
+Client 2: Total samples = 400
+Client 2: Train=320, Test=80
+Target sample: shape=torch.Size([1, 1, 28, 28]), label=7
+Attack data saved: idlg_inputs/round4_client2_attack_data.pt
+Gradient norm: 21.499736
+Sample label: 7
+
+--- Client 3 Training ---
+Client 3: Total samples = 400
+Client 3: Train=320, Test=80
+  Client 3 Epoch 1/2: Loss=1.1408, Acc=0.5312, Samples=320
+  Client 3 Epoch 2/2: Loss=0.5260, Acc=0.7000, Samples=320
+Client 3: Total samples = 400
+Client 3: Train=320, Test=80
+Client 3: 640 samples, accuracy: 0.6000
+Generating iDLG attack data for Client 3, Round 4
+Client 3: Total samples = 400
+Client 3: Train=320, Test=80
+Target sample: shape=torch.Size([1, 1, 28, 28]), label=3
+Attack data saved: idlg_inputs/round4_client3_attack_data.pt
+Gradient norm: 16.642481
+Sample label: 3
+
+--- Client 4 Training ---
+Client 4: Total samples = 400
+Client 4: Train=320, Test=80
+  Client 4 Epoch 1/2: Loss=0.8333, Acc=0.6250, Samples=320
+  Client 4 Epoch 2/2: Loss=0.4711, Acc=0.7781, Samples=320
+Client 4: Total samples = 400
+Client 4: Train=320, Test=80
+Client 4: 640 samples, accuracy: 0.8875
+Generating iDLG attack data for Client 4, Round 4
+Client 4: Total samples = 400
+Client 4: Train=320, Test=80
+Target sample: shape=torch.Size([1, 1, 28, 28]), label=2
+Attack data saved: idlg_inputs/round4_client4_attack_data.pt
+Gradient norm: 27.467191
+Sample label: 2
+
+Round 5 Summary:
+   Participating clients: 5/5
+   Total samples: 3200
+   Average samples per client: 640.0
+
+Federated learning completed!
+iDLG attack data saved in 'idlg_inputs/' directory
+Generated 25 iDLG attack data files:
+   - round0_client0_attack_data.pt
+   - round0_client1_attack_data.pt
+   - round0_client2_attack_data.pt
+   - round0_client3_attack_data.pt
+   - round0_client4_attack_data.pt
+   - round1_client0_attack_data.pt
+   - round1_client1_attack_data.pt
+   - round1_client2_attack_data.pt
+   - round1_client3_attack_data.pt
+   - round1_client4_attack_data.pt
+   - round2_client0_attack_data.pt
+   - round2_client1_attack_data.pt
+   - round2_client2_attack_data.pt
+   - round2_client3_attack_data.pt
+   - round2_client4_attack_data.pt
+   - round3_client0_attack_data.pt
+   - round3_client1_attack_data.pt
+   - round3_client2_attack_data.pt
+   - round3_client3_attack_data.pt
+   - round3_client4_attack_data.pt
+   - round4_client0_attack_data.pt
+   - round4_client1_attack_data.pt
+   - round4_client2_attack_data.pt
+   - round4_client3_attack_data.pt
+   - round4_client4_attack_data.pt
+
+Ready for iDLG attacks on 25 data files!
+Next step: Run 'python idlg_attack.py' to perform attacks

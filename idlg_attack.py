@@ -11,24 +11,24 @@ from torchvision import transforms
 
 class FixedIDLGAttacker:
     """
-    修正的 iDLG 攻擊器 - 與原始論文完全一致
+    Fixed iDLG attacker - fully consistent with original paper
     """
     
     def __init__(self, device=torch.device('cpu')):
         self.device = device
         self.model = None
         
-        # Transform utilities - 與原始論文保持一致
+        # Transform utilities - consistent with original paper
         self.to_tensor = transforms.ToTensor()
         self.to_pil = transforms.ToPILImage()
     
     def attack(self, attack_data_path, method='iDLG', lr=1.0, iterations=300):
         """
-        執行修正的 iDLG 攻擊
+        Execute fixed iDLG attack
         """
         print(f"Starting Fixed {method} Attack")
         
-        # 載入攻擊數據
+        # Load attack data
         attack_data = torch.load(attack_data_path, map_location='cpu')
         gt_data = attack_data['gt_data'].to(self.device)
         gt_label = attack_data['gt_label'].to(self.device)
@@ -36,21 +36,21 @@ class FixedIDLGAttacker:
         
         print(f"Ground truth: shape={gt_data.shape}, label={gt_label.item()}")
         
-        # 關鍵修正1: 使用新的隨機初始化模型
+        # Key fix 1: Use new randomly initialized model
         channel = gt_data.shape[1]  # 1 for MNIST
         hidden = 588  # MNIST LeNet hidden size
         num_classes = 10
         
         self.model = LeNetMNIST(channel=channel, hidden=hidden, num_classes=num_classes).to(self.device)
         
-        # 關鍵修正2: 應用與原始論文相同的權重初始化
+        # Key fix 2: Apply same weight initialization as original paper
         self._weights_init_like_paper(self.model)
         
-        # 關鍵修正3: 重新計算梯度（使用隨機初始化的模型）
-        self.model.train()  # 訓練模式
+        # Key fix 3: Recompute gradients (using randomly initialized model)
+        self.model.train()  # Training mode
         criterion = nn.CrossEntropyLoss()
         
-        # 用當前隨機模型重新計算真實梯度
+        # Recompute real gradients with current random model
         out = self.model(gt_data)
         y = criterion(out, gt_label)
         original_dy_dx = torch.autograd.grad(y, self.model.parameters())
@@ -58,44 +58,30 @@ class FixedIDLGAttacker:
         
         print(f"Recomputed gradients with random model: {len(original_dy_dx)} tensors")
         
-        # 初始化虛假數據
+        # Initialize dummy data
         dummy_data = torch.randn(gt_data.size()).to(self.device).requires_grad_(True)
         
-        if method == 'DLG':
-            dummy_label = torch.randn((gt_data.shape[0], num_classes)).to(self.device).requires_grad_(True)
-            optimizer = torch.optim.LBFGS([dummy_data, dummy_label], lr=lr)
-            
-        elif method == 'iDLG':
-            # 關鍵修正4: 正確的標籤預測（使用倒數第二層）
-            label_pred = self._predict_label_correctly(original_dy_dx)
-            print(f"Predicted label: {label_pred.item()} (True: {gt_label.item()})")
-            
-            optimizer = torch.optim.LBFGS([dummy_data], lr=lr)
+        # Key fix 4: Correct label prediction (using second-to-last layer)
+        label_pred = self._predict_label_correctly(original_dy_dx)
+        print(f"Predicted label: {label_pred.item()} (True: {gt_label.item()})")
         
-        # 記錄變量
+        optimizer = torch.optim.LBFGS([dummy_data], lr=lr)
+        
+        # Recording variables
         losses = []
         mses = []
         
         print(f"Starting optimization with lr={lr}, iterations={iterations}")
         start_time = time.time()
         
-        # 關鍵修正5: 與原始論文完全相同的優化循環
+        # Key fix 5: Optimization loop identical to original paper
         for iters in range(iterations):
             def closure():
                 optimizer.zero_grad()
                 pred = self.model(dummy_data)
                 
-                if method == 'DLG':
-                    # 與原始論文相同的 DLG 損失
-                    dummy_loss = -torch.mean(
-                        torch.sum(
-                            torch.softmax(dummy_label, -1) * torch.log(torch.softmax(pred, -1)), 
-                            dim=-1
-                        )
-                    )
-                elif method == 'iDLG':
-                    # 與原始論文相同的 iDLG 損失
-                    dummy_loss = criterion(pred, label_pred)
+                # iDLG loss same as original paper
+                dummy_loss = criterion(pred, label_pred)
 
                 dummy_dy_dx = torch.autograd.grad(dummy_loss, self.model.parameters(), create_graph=True)
 
@@ -110,35 +96,32 @@ class FixedIDLGAttacker:
             losses.append(current_loss)
             mses.append(torch.mean((dummy_data - gt_data) ** 2).item())
 
-            # 進度顯示 - 與原始論文相同的頻率
+            # Progress display - same frequency as original paper
             if iters % int(iterations / 30) == 0:
                 current_time = str(time.strftime("[%Y-%m-%d %H:%M:%S]", time.localtime()))
                 print(f"{current_time} {iters} loss = {current_loss:.8f}, mse = {mses[-1]:.8f}")
 
-            # 收斂檢查 - 與原始論文相同的閾值
+            # Convergence check - same threshold as original paper
             if current_loss < 0.000001:
                 print(f"Converged at iteration {iters}!")
                 break
         
-        # 計算最終結果
+        # Calculate final results
         total_time = time.time() - start_time
         final_loss = losses[-1] if losses else float('inf')
         final_mse = mses[-1] if mses else float('inf')
         
-        # 預測標籤
-        if method == 'DLG':
-            predicted_label = torch.argmax(dummy_label, dim=-1).detach().item()
-        elif method == 'iDLG':
-            predicted_label = label_pred.item()
+        # Predict label
+        predicted_label = label_pred.item()
         
-        # 計算品質指標
+        # Calculate quality metrics
         reconstructed_image = dummy_data[0].detach().cpu().clamp(0, 1)
         original_image = gt_data[0].cpu()
         
         psnr = calculate_psnr(original_image, reconstructed_image)
         ssim = calculate_ssim(original_image, reconstructed_image)
         
-        # 打印結果
+        # Print results
         print(f"\n{'='*60}")
         print(f"FIXED {method} ATTACK RESULTS")
         print(f"{'='*60}")
@@ -150,9 +133,9 @@ class FixedIDLGAttacker:
         print(f"SSIM: {ssim:.4f}")
         print(f"Ground truth label: {gt_label.item()}")
         print(f"Predicted label: {predicted_label}")
-        print(f"Label accuracy: {'✓' if predicted_label == gt_label.item() else '✗'}")
+        print(f"Label accuracy: {'CORRECT' if predicted_label == gt_label.item() else 'INCORRECT'}")
         
-        # 保存结果
+        # Save results
         self._save_final_results(
             original_image, reconstructed_image, gt_label.item(), 
             predicted_label, psnr, ssim, final_mse, method, attack_data_path
@@ -169,7 +152,7 @@ class FixedIDLGAttacker:
     
     def _weights_init_like_paper(self, model):
         """
-        與原始論文完全相同的權重初始化
+        Weight initialization identical to original paper
         """
         def weights_init(m):
             try:
@@ -188,44 +171,44 @@ class FixedIDLGAttacker:
     
     def _predict_label_correctly(self, gradients):
         """
-        正確的標籤預測 - 使用倒數第二層（權重層）
+        Correct label prediction - using second-to-last layer (weight layer)
         """
-        # 使用倒數第二層（全連接層的權重），不是最後一層（偏置）
-        fc_weight_grad = gradients[-2]  # 倒數第二層應該是全連接層權重
+        # Use second-to-last layer (fully connected layer weights), not last layer (bias)
+        fc_weight_grad = gradients[-2]  # Second-to-last layer should be FC layer weights
         
-        # 對每個類別計算梯度的總和
+        # Calculate gradient sum for each class
         label_pred = torch.argmin(torch.sum(fc_weight_grad, dim=-1), dim=-1)
         
         return label_pred.detach().reshape((1,)).requires_grad_(False)
     
     def _save_final_results(self, original, reconstructed, true_label, pred_label, 
                           psnr, ssim, mse, method, data_path):
-        """保存最終結果"""
+        """Save final results"""
         try:
             os.makedirs("idlg_results", exist_ok=True)
             
             fig, axes = plt.subplots(1, 3, figsize=(15, 5))
             
-            # 原始圖像
+            # Original image
             axes[0].imshow(original.squeeze(), cmap='gray')
             axes[0].set_title(f'Original Private Data\nTrue Label: {true_label}', 
                              fontsize=14, weight='bold')
             axes[0].axis('off')
             
-            # 重建圖像
+            # Reconstructed image
             axes[1].imshow(reconstructed.squeeze(), cmap='gray')
             axes[1].set_title(f'Fixed {method} Reconstructed\nPred Label: {pred_label}\n'
                              f'PSNR: {psnr:.2f} dB, SSIM: {ssim:.4f}', fontsize=14)
             axes[1].axis('off')
             
-            # 差異圖
+            # Difference image
             diff = torch.abs(original - reconstructed)
             im = axes[2].imshow(diff.squeeze(), cmap='hot')
             axes[2].set_title(f'Absolute Difference\nMSE: {mse:.6f}', fontsize=14)
             axes[2].axis('off')
             plt.colorbar(im, ax=axes[2], fraction=0.046, pad=0.04)
             
-            # 設置標題顏色
+            # Set title color
             if mse < 0.01:
                 title_color = 'red'
                 status = 'CRITICAL PRIVACY BREACH'
@@ -241,7 +224,7 @@ class FixedIDLGAttacker:
             
             plt.tight_layout()
             
-            # 保存結果
+            # Save results
             base_name = os.path.basename(data_path).replace('.pt', '')
             filename = f"idlg_results/fixed_{method}_final_{base_name}.png"
             plt.savefig(filename, dpi=200, bbox_inches='tight')
@@ -254,15 +237,16 @@ class FixedIDLGAttacker:
 
 def run_all_25_idlg_attacks():
     """
-    運行所有25個iDLG攻擊測試
+    Run all 25 iDLG attack tests (5 Rounds × 5 Clients)
     """
     print("Running All 25 iDLG Attacks (5 Rounds × 5 Clients)")
+    print("Using iDLG method only")
     print("="*60)
     
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
     
-    # 檢查攻擊數據
+    # Check attack data
     if not os.path.exists("idlg_inputs"):
         print("No attack data found. Please run 'python server.py' first.")
         return
@@ -274,82 +258,92 @@ def run_all_25_idlg_attacks():
     
     print(f"Found {len(attack_files)} attack data files")
     
-    # 創建修正的攻擊器
+    # Create fixed attacker
     attacker = FixedIDLGAttacker(device)
     
-    # 攻擊統計
+    # Attack statistics
     total_attacks = 0
     successful_attacks = 0
     attack_results = []
     
-    # 測試所有文件
+    # Test all files - only iDLG method
     for attack_file in sorted(attack_files):
         attack_path = os.path.join("idlg_inputs", attack_file)
         print(f"\n{'='*50}")
         print(f"Testing: {attack_file}")
         print(f"{'='*50}")
         
-        # 測試 DLG 和 iDLG
-        for method in ['DLG', 'iDLG']:
-            print(f"\n--- Fixed {method} Attack ---")
-            total_attacks += 1
-            
-            reconstructed, pred_label, results = attacker.attack(
-                attack_path, 
-                method=method, 
-                lr=1.0, 
-                iterations=300
-            )
-            
-            if reconstructed is not None:
-                successful_attacks += 1
-                attack_results.append({
-                    'file': attack_file,
-                    'method': method,
-                    'mse': results['mse'],
-                    'psnr': results['psnr'],
-                    'ssim': results['ssim'],
-                    'time': results['time']
-                })
-                print(f"Fixed {method} attack completed successfully")
-                print(f"MSE: {results['mse']:.6f}, PSNR: {results['psnr']:.2f}")
-            else:
-                print(f"Fixed {method} attack failed")
+        # Only test iDLG
+        method = 'iDLG'
+        print(f"\n--- Fixed {method} Attack ---")
+        total_attacks += 1
+        
+        reconstructed, pred_label, results = attacker.attack(
+            attack_path, 
+            method=method, 
+            lr=1.0, 
+            iterations=300
+        )
+        
+        if reconstructed is not None:
+            successful_attacks += 1
+            attack_results.append({
+                'file': attack_file,
+                'method': method,
+                'mse': results['mse'],
+                'psnr': results['psnr'],
+                'ssim': results['ssim'],
+                'time': results['time']
+            })
+            print(f"Fixed {method} attack completed successfully")
+            print(f"MSE: {results['mse']:.6f}, PSNR: {results['psnr']:.2f}")
+        else:
+            print(f"Fixed {method} attack failed")
     
-    # 攻擊統計報告
+    # Attack statistics report
     print(f"\n{'='*70}")
-    print(f"COMPREHENSIVE ATTACK STATISTICS")
+    print(f"COMPREHENSIVE iDLG ATTACK STATISTICS")
     print(f"{'='*70}")
     print(f"Total attacks performed: {total_attacks}")
     print(f"Successful attacks: {successful_attacks}")
     print(f"Success rate: {successful_attacks/total_attacks*100:.1f}%")
     print(f"Total result images: {successful_attacks}")
     
-    # 計算成功攻擊的平均指標
+    # Calculate average metrics for successful attacks
     if attack_results:
         avg_mse = sum(r['mse'] for r in attack_results) / len(attack_results)
         avg_psnr = sum(r['psnr'] for r in attack_results) / len(attack_results)
         avg_ssim = sum(r['ssim'] for r in attack_results) / len(attack_results)
         avg_time = sum(r['time'] for r in attack_results) / len(attack_results)
         
-        print(f"\nAverage Attack Performance:")
+        print(f"\nAverage iDLG Attack Performance:")
         print(f"   MSE: {avg_mse:.6f}")
         print(f"   PSNR: {avg_psnr:.2f} dB")
         print(f"   SSIM: {avg_ssim:.4f}")
         print(f"   Time: {avg_time:.1f} seconds")
         
-        # 攻擊效果分類
+        # Attack effectiveness classification
         critical_attacks = sum(1 for r in attack_results if r['mse'] < 0.01)
         severe_attacks = sum(1 for r in attack_results if 0.01 <= r['mse'] < 0.05)
         moderate_attacks = len(attack_results) - critical_attacks - severe_attacks
         
-        print(f"\nAttack Impact Analysis:")
+        print(f"\niDLG Attack Impact Analysis:")
         print(f"   Critical Privacy Breach (MSE < 0.01): {critical_attacks}")
         print(f"   Severe Privacy Leak (0.01 ≤ MSE < 0.05): {severe_attacks}")
         print(f"   Moderate Success (MSE ≥ 0.05): {moderate_attacks}")
+        
+        # Time analysis
+        min_time = min(r['time'] for r in attack_results)
+        max_time = max(r['time'] for r in attack_results)
+        
+        print(f"\niDLG Attack Time Analysis:")
+        print(f"   Minimum time: {min_time:.1f} seconds")
+        print(f"   Maximum time: {max_time:.1f} seconds")
+        print(f"   Average time: {avg_time:.1f} seconds")
     
-    print(f"\nAll 25 attacks completed!")
+    print(f"\nAll 25 iDLG attacks completed!")
     print(f"Results saved in 'idlg_results/' directory")
+    print(f"Compare these baseline times with DP-protected attack times")
 
 if __name__ == "__main__":
     run_all_25_idlg_attacks()

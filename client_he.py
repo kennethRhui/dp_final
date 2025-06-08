@@ -16,40 +16,40 @@ class ClientHE:
         self.public_key = None
         
     def set_public_key(self, public_key):
-        """設置來自服務器的公鑰"""
+        """Set public key from server"""  
         self.public_key = public_key
         print(f"Client {self.cid} received public key")
         
     def set_parameters(self, parameters):
-        """設置模型參數"""
+        """Set model parameters"""  
         self.model.load_state_dict(parameters)
         
     def get_parameters(self):
-        """獲取模型參數"""
+        """Get model parameters"""  
         return copy.deepcopy(self.model.state_dict())
     
     def encrypt_gradients(self, gradients, global_params, slice_num=1):
         """
-        使用 Paillier 加密梯度
-        基於 FedBoosting 的實現方式
-        """
+        Encrypt gradients using Paillier encryption
+        Based on FedBoosting implementation
+        """  
         if self.public_key is None:
             raise ValueError("Public key not set!")
             
         encrypted_gradients = {}
-        precision_factor = 1e8  # 精度係數，比 FedBoosting 小一點避免溢出
+        precision_factor = 1e8  # Precision factor, smaller than FedBoosting to avoid overflow
         
         print(f"Client {self.cid} encrypting gradients...")
         
         for name, param in gradients.items():
             if param is not None:
-                # 計算梯度差
+                # Calculate gradient difference
                 grad_diff = (global_params[name] - param) / slice_num
                 
-                # 轉換為numpy並平坦化
+                # Convert to numpy and flatten
                 grad_flat = grad_diff.cpu().numpy().flatten()
                 
-                # 轉換為整數並加密
+                # Convert to integer and encrypt
                 encrypted_list = []
                 for value in grad_flat:
                     int_value = int(value * precision_factor)
@@ -66,10 +66,10 @@ class ClientHE:
         return encrypted_gradients
     
     def train(self, epochs=1):
-        """客戶端本地訓練"""
+        """Client local training"""  
         print(f"Client {self.cid} starting local training...")
         
-        # 獲取數據
+        # Get data
         result = get_dataloaders(self.cid)
         if result is None:
             print(f"Client {self.cid}: No data available")
@@ -77,10 +77,10 @@ class ClientHE:
         
         train_loader, _ = result
         
-        # 保存全局參數
+        # Save global parameters
         global_params = self.get_parameters()
         
-        # 本地訓練
+        # Local training
         self.model.train()
         optimizer = optim.SGD(self.model.parameters(), lr=0.01, momentum=0.9)
         
@@ -102,10 +102,10 @@ class ClientHE:
         
         avg_loss = total_loss / num_batches if num_batches > 0 else 0.0
         
-        # 獲取訓練後的參數
+        # Get trained parameters
         local_params = self.get_parameters()
         
-        # 加密梯度
+        # Encrypt gradients
         encrypted_gradients = self.encrypt_gradients(local_params, global_params)
         
         print(f"Client {self.cid} training completed. Avg loss: {avg_loss:.4f}")
@@ -117,66 +117,83 @@ class ClientHE:
         }
     
     def generate_idlg_data_with_he(self, global_params, round_num):
-        """生成用於iDLG攻擊的HE加密梯度數據"""
-        # 設置全局參數
+        """
+        Generate HE-encrypted gradient data for iDLG attack
+        Only saves encrypted gradients - no original gradients for true HE protection
+        """
+        # Set global parameters
         self.set_parameters(global_params)
         
-        # 獲取一個樣本
+        # Get data
         result = get_dataloaders(self.cid)
         if result is None:
+            print(f"Client {self.cid}: No data available for attack data generation")
             return
         
         train_loader, _ = result
         if train_loader is None:
+            print(f"Client {self.cid}: No training data available")
             return
         
-        # 獲取第一個batch的第一個樣本
+        # Get the first sample from first batch
         try:
             data_iter = iter(train_loader)
             batch_data, batch_labels = next(data_iter)
             
-            # 只取第一個樣本
-            sample_data = batch_data[0:1].to(self.device)
-            sample_label = batch_labels[0:1].to(self.device)
+            # Take only the first sample
+            target_data = batch_data[0:1].to(self.device)
+            true_label = batch_labels[0:1].to(self.device)
             
-            print(f"Target sample: shape={sample_data.shape}, label={sample_label.item()}")
+            print(f"Target sample: shape={target_data.shape}, label={true_label.item()}")
             
-            # 計算原始梯度
+            # Calculate original gradients
             self.model.zero_grad()
-            output = self.model(sample_data)
-            loss = torch.nn.CrossEntropyLoss()(output, sample_label)
+            output = self.model(target_data)
+            loss = torch.nn.CrossEntropyLoss()(output, true_label)
             loss.backward()
             
-            # 收集原始梯度
-            original_gradients = {}
+            # Collect original gradients for encryption ONLY
+            original_gradients_dict = {}
+            
             for name, param in self.model.named_parameters():
                 if param.grad is not None:
-                    original_gradients[name] = param.grad.clone()
+                    grad_tensor = param.grad.clone()
+                    original_gradients_dict[name] = grad_tensor   # Only for encryption
             
-            # 加密梯度
-            encrypted_gradients = self.encrypt_gradients(original_gradients, global_params)
+            # Encrypt gradients using current model parameters as "global_params"
+            current_params = self.get_parameters()
+            encrypted_gradients = self.encrypt_gradients(original_gradients_dict, current_params)
             
-            # 保存攻擊數據
+            # TRUE HE PROTECTION: Only save encrypted data
             attack_data = {
+                # HE encrypted data - attacker can only access these
                 'encrypted_gradients': encrypted_gradients,
-                'target_data': sample_data.cpu(),
-                'true_label': sample_label.cpu(),
+                'precision_factor': 1e8,
+                
+                # Target data and label for attack evaluation
+                'target_data': target_data.cpu(),
+                'true_label': true_label.cpu(),
+                
+                # Metadata
                 'client_id': self.cid,
                 'round': round_num,
-                'precision_factor': 1e8
+                'encryption_method': 'paillier_he',
+                'he_protection': True  # Flag indicating true HE protection
+                
+                # NO 'gradients' field - original gradients are NOT saved!
             }
             
-            # 確保目錄存在
+            # Ensure directory exists
             os.makedirs('idlg_inputs_he', exist_ok=True)
             
-            # 保存檔案
+            # Save file with consistent naming pattern
             filename = f"idlg_inputs_he/round{round_num}_client{self.cid}_he_attack_data.pt"
             torch.save(attack_data, filename)
             print(f"HE attack data saved: {filename}")
             
-            # 輸出攻擊資訊
-            print(f"Sample label: {sample_label.item()}")
-            print(f"Encrypted gradients keys: {list(encrypted_gradients.keys())}")
+            print(f"Sample label: {true_label.item()}")
+            print(f"Encrypted gradients: {len(encrypted_gradients)} layer groups")
+            print(f"Original gradients: NOT SAVED (true HE protection)")
             
         except Exception as e:
             print(f"Error generating HE iDLG attack data: {e}")
@@ -184,7 +201,7 @@ class ClientHE:
             traceback.print_exc()
     
     def evaluate(self):
-        """評估模型"""
+        """Evaluate model"""  
         result = get_dataloaders(self.cid)
         if result is None:
             return 0.0

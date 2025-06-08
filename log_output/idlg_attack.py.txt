@@ -1,0 +1,839 @@
+idlg_attack.py
+Running All 25 iDLG Attacks (5 Rounds × 5 Clients)
+Using iDLG method only
+============================================================
+Using device: cuda
+Found 25 attack data files
+
+==================================================
+Testing: round0_client0_attack_data.pt
+==================================================
+
+--- Fixed iDLG Attack ---
+Starting Fixed iDLG Attack
+Ground truth: shape=torch.Size([1, 1, 28, 28]), label=0
+Applied paper-consistent weight initialization
+Recomputed gradients with random model: 8 tensors
+Predicted label: 0 (True: 0)
+Starting optimization with lr=1.0, iterations=300
+[2025-06-09 00:07:35] 0 loss = 217.42543030, mse = 4.50339413
+[2025-06-09 00:07:39] 10 loss = 0.02066495, mse = 0.00966303
+[2025-06-09 00:07:43] 20 loss = 0.00000098, mse = 0.00000125
+Converged at iteration 20!
+
+============================================================
+FIXED iDLG ATTACK RESULTS
+============================================================
+Total time: 8.33 seconds
+Iterations: 21
+Final loss: 0.00000098
+Final MSE: 0.00000125
+PSNR: 65.78 dB
+SSIM: 1.0000
+Ground truth label: 0
+Predicted label: 0
+Label accuracy: CORRECT
+Fixed results saved to: idlg_results/fixed_iDLG_final_round0_client0_attack_data.png
+Fixed iDLG attack completed successfully
+MSE: 0.000001, PSNR: 65.78
+
+==================================================
+Testing: round0_client1_attack_data.pt
+==================================================
+
+--- Fixed iDLG Attack ---
+Starting Fixed iDLG Attack
+Ground truth: shape=torch.Size([1, 1, 28, 28]), label=2
+Applied paper-consistent weight initialization
+Recomputed gradients with random model: 8 tensors
+Predicted label: 2 (True: 2)
+Starting optimization with lr=1.0, iterations=300
+[2025-06-09 00:07:44] 0 loss = 4.92962551, mse = 0.42704192
+[2025-06-09 00:07:48] 10 loss = 0.00002794, mse = 0.00014749
+Converged at iteration 15!
+
+============================================================
+FIXED iDLG ATTACK RESULTS
+============================================================
+Total time: 6.57 seconds
+Iterations: 16
+Final loss: 0.00000053
+Final MSE: 0.00000074
+PSNR: 62.15 dB
+SSIM: 1.0000
+Ground truth label: 2
+Predicted label: 2
+Label accuracy: CORRECT
+Fixed results saved to: idlg_results/fixed_iDLG_final_round0_client1_attack_data.png
+Fixed iDLG attack completed successfully
+MSE: 0.000001, PSNR: 62.15
+
+==================================================
+Testing: round0_client2_attack_data.pt
+==================================================
+
+--- Fixed iDLG Attack ---
+Starting Fixed iDLG Attack
+Ground truth: shape=torch.Size([1, 1, 28, 28]), label=3
+Applied paper-consistent weight initialization
+Recomputed gradients with random model: 8 tensors
+Predicted label: 3 (True: 3)
+Starting optimization with lr=1.0, iterations=300
+[2025-06-09 00:07:50] 0 loss = 4.75825644, mse = 0.85941547
+[2025-06-09 00:07:54] 10 loss = 0.00004916, mse = 0.00023743
+Converged at iteration 16!
+
+============================================================
+FIXED iDLG ATTACK RESULTS
+============================================================
+Total time: 6.87 seconds
+Iterations: 17
+Final loss: 0.00000039
+Final MSE: 0.00000083
+PSNR: 62.74 dB
+SSIM: 0.9999
+Ground truth label: 3
+Predicted label: 3
+Label accuracy: CORRECT
+Fixed results saved to: idlg_results/fixed_iDLG_final_round0_client2_attack_data.png
+Fixed iDLG attack completed successfully
+MSE: 0.000001, PSNR: 62.74
+
+==================================================
+Testing: round0_client3_attack_data.pt
+==================================================
+
+--- Fixed iDLG Attack ---
+Starting Fixed iDLG Attack
+Ground truth: shape=torch.Size([1, 1, 28, 28]), label=3
+Applied paper-consistent weight initialization
+Recomputed gradients with random model: 8 tensors
+Predicted label: 3 (True: 3)
+Starting optimization with lr=1.0, iterations=300
+[2025-06-09 00:07:58] 0 loss = 12.14922905, mse = 0.43363380
+Converged at iteration 8!
+
+============================================================
+FIXED iDLG ATTACK RESULTS
+============================================================
+Total time: 3.37 seconds
+Iterations: 9
+Final loss: 0.00000047
+Final MSE: 0.00000015
+PSNR: 72.51 dB
+SSIM: 1.0000
+Ground truth label: 3
+Predicted label: 3
+Label accuracy: CORRECT
+Fixed results saved to: idlg_results/fixed_iDLG_final_round0_client3_attack_data.png
+Fixed iDLG attack completed successfully
+MSE: 0.000000, PSNR: 72.51
+
+==================================================
+Testing: round0_client4_attack_data.pt
+==================================================
+
+--- Fixed iDLG Attack ---
+Starting Fixed iDLG Attack
+Ground truth: shape=torch.Size([1, 1, 28, 28]), label=2
+Applied paper-consistent weight initialization
+Recomputed gradients with random model: 8 tensors
+Predicted label: 2 (True: 2)
+Starting optimization with lr=1.0, iterations=300
+[2025-06-09 00:08:01] 0 loss = 0.20837095, mse = 0.89582759
+[2025-06-09 00:08:05] 10 loss = 0.00008129, mse = 0.00856603
+[2025-06-09 00:08:10] 20 loss = 0.00000095, mse = 0.00023647
+Converged at iteration 20!
+
+============================================================
+FIXED iDLG ATTACK RESULTS
+============================================================
+Total time: 9.22 seconds
+Iterations: 21
+Final loss: 0.00000095
+Final MSE: 0.00023647
+PSNR: 45.76 dB
+SSIM: 0.9931
+Ground truth label: 2
+Predicted label: 2
+Label accuracy: CORRECT
+Fixed results saved to: idlg_results/fixed_iDLG_final_round0_client4_attack_data.png
+Fixed iDLG attack completed successfully
+MSE: 0.000236, PSNR: 45.76
+
+==================================================
+Testing: round1_client0_attack_data.pt
+==================================================
+
+--- Fixed iDLG Attack ---
+Starting Fixed iDLG Attack
+Ground truth: shape=torch.Size([1, 1, 28, 28]), label=7
+Applied paper-consistent weight initialization
+Recomputed gradients with random model: 8 tensors
+Predicted label: 7 (True: 7)
+Starting optimization with lr=1.0, iterations=300
+[2025-06-09 00:08:11] 0 loss = 11.01045990, mse = 0.73494703
+[2025-06-09 00:08:15] 10 loss = 0.00003000, mse = 0.00004396
+Converged at iteration 15!
+
+============================================================
+FIXED iDLG ATTACK RESULTS
+============================================================
+Total time: 6.68 seconds
+Iterations: 16
+Final loss: 0.00000040
+Final MSE: 0.00000038
+PSNR: 67.06 dB
+SSIM: 0.9999
+Ground truth label: 7
+Predicted label: 7
+Label accuracy: CORRECT
+Fixed results saved to: idlg_results/fixed_iDLG_final_round1_client0_attack_data.png
+Fixed iDLG attack completed successfully
+MSE: 0.000000, PSNR: 67.06
+
+==================================================
+Testing: round1_client1_attack_data.pt
+==================================================
+
+--- Fixed iDLG Attack ---
+Starting Fixed iDLG Attack
+Ground truth: shape=torch.Size([1, 1, 28, 28]), label=2
+Applied paper-consistent weight initialization
+Recomputed gradients with random model: 8 tensors
+Predicted label: 2 (True: 2)
+Starting optimization with lr=1.0, iterations=300
+[2025-06-09 00:08:18] 0 loss = 5.13435555, mse = 0.53188092
+[2025-06-09 00:08:22] 10 loss = 0.00000174, mse = 0.00000087
+Converged at iteration 11!
+
+============================================================
+FIXED iDLG ATTACK RESULTS
+============================================================
+Total time: 5.27 seconds
+Iterations: 12
+Final loss: 0.00000034
+Final MSE: 0.00000028
+PSNR: 67.75 dB
+SSIM: 1.0000
+Ground truth label: 2
+Predicted label: 2
+Label accuracy: CORRECT
+Fixed results saved to: idlg_results/fixed_iDLG_final_round1_client1_attack_data.png
+Fixed iDLG attack completed successfully
+MSE: 0.000000, PSNR: 67.75
+
+==================================================
+Testing: round1_client2_attack_data.pt
+==================================================
+
+--- Fixed iDLG Attack ---
+Starting Fixed iDLG Attack
+Ground truth: shape=torch.Size([1, 1, 28, 28]), label=7
+Applied paper-consistent weight initialization
+Recomputed gradients with random model: 8 tensors
+Predicted label: 7 (True: 7)
+Starting optimization with lr=1.0, iterations=300
+[2025-06-09 00:08:23] 0 loss = 9.22672176, mse = 0.51023483
+[2025-06-09 00:08:28] 10 loss = 0.00000400, mse = 0.00000328
+Converged at iteration 12!
+
+============================================================
+FIXED iDLG ATTACK RESULTS
+============================================================
+Total time: 6.00 seconds
+Iterations: 13
+Final loss: 0.00000055
+Final MSE: 0.00000057
+PSNR: 64.45 dB
+SSIM: 0.9998
+Ground truth label: 7
+Predicted label: 7
+Label accuracy: CORRECT
+Fixed results saved to: idlg_results/fixed_iDLG_final_round1_client2_attack_data.png
+Fixed iDLG attack completed successfully
+MSE: 0.000001, PSNR: 64.45
+
+==================================================
+Testing: round1_client3_attack_data.pt
+==================================================
+
+--- Fixed iDLG Attack ---
+Starting Fixed iDLG Attack
+Ground truth: shape=torch.Size([1, 1, 28, 28]), label=3
+Applied paper-consistent weight initialization
+Recomputed gradients with random model: 8 tensors
+Predicted label: 3 (True: 3)
+Starting optimization with lr=1.0, iterations=300
+[2025-06-09 00:08:29] 0 loss = 138.30848694, mse = 5.66145134
+[2025-06-09 00:08:33] 10 loss = 0.00082092, mse = 0.00096265
+Converged at iteration 18!
+
+============================================================
+FIXED iDLG ATTACK RESULTS
+============================================================
+Total time: 8.44 seconds
+Iterations: 19
+Final loss: 0.00000077
+Final MSE: 0.00000085
+PSNR: 62.59 dB
+SSIM: 0.9999
+Ground truth label: 3
+Predicted label: 3
+Label accuracy: CORRECT
+Fixed results saved to: idlg_results/fixed_iDLG_final_round1_client3_attack_data.png
+Fixed iDLG attack completed successfully
+MSE: 0.000001, PSNR: 62.59
+
+==================================================
+Testing: round1_client4_attack_data.pt
+==================================================
+
+--- Fixed iDLG Attack ---
+Starting Fixed iDLG Attack
+Ground truth: shape=torch.Size([1, 1, 28, 28]), label=6
+Applied paper-consistent weight initialization
+Recomputed gradients with random model: 8 tensors
+Predicted label: 6 (True: 6)
+Starting optimization with lr=1.0, iterations=300
+[2025-06-09 00:08:38] 0 loss = 9.24620152, mse = 0.73331028
+[2025-06-09 00:08:42] 10 loss = 0.00004093, mse = 0.00008182
+Converged at iteration 17!
+
+============================================================
+FIXED iDLG ATTACK RESULTS
+============================================================
+Total time: 8.15 seconds
+Iterations: 18
+Final loss: 0.00000073
+Final MSE: 0.00000139
+PSNR: 67.60 dB
+SSIM: 0.9999
+Ground truth label: 6
+Predicted label: 6
+Label accuracy: CORRECT
+Fixed results saved to: idlg_results/fixed_iDLG_final_round1_client4_attack_data.png
+Fixed iDLG attack completed successfully
+MSE: 0.000001, PSNR: 67.60
+
+==================================================
+Testing: round2_client0_attack_data.pt
+==================================================
+
+--- Fixed iDLG Attack ---
+Starting Fixed iDLG Attack
+Ground truth: shape=torch.Size([1, 1, 28, 28]), label=7
+Applied paper-consistent weight initialization
+Recomputed gradients with random model: 8 tensors
+Predicted label: 7 (True: 7)
+Starting optimization with lr=1.0, iterations=300
+[2025-06-09 00:08:46] 0 loss = 8.90183735, mse = 0.56128329
+[2025-06-09 00:08:51] 10 loss = 0.00000386, mse = 0.00000326
+Converged at iteration 12!
+
+============================================================
+FIXED iDLG ATTACK RESULTS
+============================================================
+Total time: 5.32 seconds
+Iterations: 13
+Final loss: 0.00000051
+Final MSE: 0.00000052
+PSNR: 70.98 dB
+SSIM: 1.0000
+Ground truth label: 7
+Predicted label: 7
+Label accuracy: CORRECT
+Fixed results saved to: idlg_results/fixed_iDLG_final_round2_client0_attack_data.png
+Fixed iDLG attack completed successfully
+MSE: 0.000001, PSNR: 70.98
+
+==================================================
+Testing: round2_client1_attack_data.pt
+==================================================
+
+--- Fixed iDLG Attack ---
+Starting Fixed iDLG Attack
+Ground truth: shape=torch.Size([1, 1, 28, 28]), label=2
+Applied paper-consistent weight initialization
+Recomputed gradients with random model: 8 tensors
+Predicted label: 2 (True: 2)
+Starting optimization with lr=1.0, iterations=300
+[2025-06-09 00:08:52] 0 loss = 4.86065912, mse = 0.38875985
+[2025-06-09 00:08:56] 10 loss = 0.00015051, mse = 0.00056154
+Converged at iteration 16!
+
+============================================================
+FIXED iDLG ATTACK RESULTS
+============================================================
+Total time: 7.85 seconds
+Iterations: 17
+Final loss: 0.00000037
+Final MSE: 0.00000038
+PSNR: 64.92 dB
+SSIM: 1.0000
+Ground truth label: 2
+Predicted label: 2
+Label accuracy: CORRECT
+Fixed results saved to: idlg_results/fixed_iDLG_final_round2_client1_attack_data.png
+Fixed iDLG attack completed successfully
+MSE: 0.000000, PSNR: 64.92
+
+==================================================
+Testing: round2_client2_attack_data.pt
+==================================================
+
+--- Fixed iDLG Attack ---
+Starting Fixed iDLG Attack
+Ground truth: shape=torch.Size([1, 1, 28, 28]), label=3
+Applied paper-consistent weight initialization
+Recomputed gradients with random model: 8 tensors
+Predicted label: 3 (True: 3)
+Starting optimization with lr=1.0, iterations=300
+[2025-06-09 00:09:00] 0 loss = 19.19225311, mse = 0.96874470
+[2025-06-09 00:09:04] 10 loss = 0.00012603, mse = 0.00010228
+Converged at iteration 15!
+
+============================================================
+FIXED iDLG ATTACK RESULTS
+============================================================
+Total time: 6.93 seconds
+Iterations: 16
+Final loss: 0.00000088
+Final MSE: 0.00000078
+PSNR: 61.98 dB
+SSIM: 0.9999
+Ground truth label: 3
+Predicted label: 3
+Label accuracy: CORRECT
+Fixed results saved to: idlg_results/fixed_iDLG_final_round2_client2_attack_data.png
+Fixed iDLG attack completed successfully
+MSE: 0.000001, PSNR: 61.98
+
+==================================================
+Testing: round2_client3_attack_data.pt
+==================================================
+
+--- Fixed iDLG Attack ---
+Starting Fixed iDLG Attack
+Ground truth: shape=torch.Size([1, 1, 28, 28]), label=3
+Applied paper-consistent weight initialization
+Recomputed gradients with random model: 8 tensors
+Predicted label: 3 (True: 3)
+Starting optimization with lr=1.0, iterations=300
+[2025-06-09 00:09:07] 0 loss = 11.26092434, mse = 0.54920912
+[2025-06-09 00:09:12] 10 loss = 0.00000153, mse = 0.00000182
+Converged at iteration 11!
+
+============================================================
+FIXED iDLG ATTACK RESULTS
+============================================================
+Total time: 5.10 seconds
+Iterations: 12
+Final loss: 0.00000065
+Final MSE: 0.00000093
+PSNR: 73.07 dB
+SSIM: 1.0000
+Ground truth label: 3
+Predicted label: 3
+Label accuracy: CORRECT
+Fixed results saved to: idlg_results/fixed_iDLG_final_round2_client3_attack_data.png
+Fixed iDLG attack completed successfully
+MSE: 0.000001, PSNR: 73.07
+
+==================================================
+Testing: round2_client4_attack_data.pt
+==================================================
+
+--- Fixed iDLG Attack ---
+Starting Fixed iDLG Attack
+Ground truth: shape=torch.Size([1, 1, 28, 28]), label=2
+Applied paper-consistent weight initialization
+Recomputed gradients with random model: 8 tensors
+Predicted label: 2 (True: 2)
+Starting optimization with lr=1.0, iterations=300
+[2025-06-09 00:09:13] 0 loss = 10.04225826, mse = 0.80547380
+[2025-06-09 00:09:17] 10 loss = 0.00000981, mse = 0.00004853
+Converged at iteration 16!
+
+============================================================
+FIXED iDLG ATTACK RESULTS
+============================================================
+Total time: 7.45 seconds
+Iterations: 17
+Final loss: 0.00000042
+Final MSE: 0.00000114
+PSNR: 59.90 dB
+SSIM: 1.0000
+Ground truth label: 2
+Predicted label: 2
+Label accuracy: CORRECT
+Fixed results saved to: idlg_results/fixed_iDLG_final_round2_client4_attack_data.png
+Fixed iDLG attack completed successfully
+MSE: 0.000001, PSNR: 59.90
+
+==================================================
+Testing: round3_client0_attack_data.pt
+==================================================
+
+--- Fixed iDLG Attack ---
+Starting Fixed iDLG Attack
+Ground truth: shape=torch.Size([1, 1, 28, 28]), label=7
+Applied paper-consistent weight initialization
+Recomputed gradients with random model: 8 tensors
+Predicted label: 7 (True: 7)
+Starting optimization with lr=1.0, iterations=300
+[2025-06-09 00:09:20] 0 loss = 15.29759312, mse = 0.80347949
+[2025-06-09 00:09:25] 10 loss = 0.00090998, mse = 0.00307195
+[2025-06-09 00:09:30] 20 loss = 0.00001130, mse = 0.00006775
+Converged at iteration 27!
+
+============================================================
+FIXED iDLG ATTACK RESULTS
+============================================================
+Total time: 12.91 seconds
+Iterations: 28
+Final loss: 0.00000068
+Final MSE: 0.00000150
+PSNR: 59.31 dB
+SSIM: 0.9998
+Ground truth label: 7
+Predicted label: 7
+Label accuracy: CORRECT
+Fixed results saved to: idlg_results/fixed_iDLG_final_round3_client0_attack_data.png
+Fixed iDLG attack completed successfully
+MSE: 0.000002, PSNR: 59.31
+
+==================================================
+Testing: round3_client1_attack_data.pt
+==================================================
+
+--- Fixed iDLG Attack ---
+Starting Fixed iDLG Attack
+Ground truth: shape=torch.Size([1, 1, 28, 28]), label=5
+Applied paper-consistent weight initialization
+Recomputed gradients with random model: 8 tensors
+Predicted label: 5 (True: 5)
+Starting optimization with lr=1.0, iterations=300
+[2025-06-09 00:09:34] 0 loss = 42.82446289, mse = 1.36593223
+[2025-06-09 00:09:38] 10 loss = 0.00000447, mse = 0.00000256
+Converged at iteration 11!
+
+============================================================
+FIXED iDLG ATTACK RESULTS
+============================================================
+Total time: 5.15 seconds
+Iterations: 12
+Final loss: 0.00000099
+Final MSE: 0.00000053
+PSNR: 68.45 dB
+SSIM: 1.0000
+Ground truth label: 5
+Predicted label: 5
+Label accuracy: CORRECT
+Fixed results saved to: idlg_results/fixed_iDLG_final_round3_client1_attack_data.png
+Fixed iDLG attack completed successfully
+MSE: 0.000001, PSNR: 68.45
+
+==================================================
+Testing: round3_client2_attack_data.pt
+==================================================
+
+--- Fixed iDLG Attack ---
+Starting Fixed iDLG Attack
+Ground truth: shape=torch.Size([1, 1, 28, 28]), label=3
+Applied paper-consistent weight initialization
+Recomputed gradients with random model: 8 tensors
+Predicted label: 3 (True: 3)
+Starting optimization with lr=1.0, iterations=300
+[2025-06-09 00:09:39] 0 loss = 35.92236328, mse = 3.15911555
+[2025-06-09 00:09:43] 10 loss = 0.00099113, mse = 0.00147027
+Converged at iteration 17!
+
+============================================================
+FIXED iDLG ATTACK RESULTS
+============================================================
+Total time: 8.21 seconds
+Iterations: 18
+Final loss: 0.00000096
+Final MSE: 0.00000134
+PSNR: 59.88 dB
+SSIM: 0.9998
+Ground truth label: 3
+Predicted label: 3
+Label accuracy: CORRECT
+Fixed results saved to: idlg_results/fixed_iDLG_final_round3_client2_attack_data.png
+Fixed iDLG attack completed successfully
+MSE: 0.000001, PSNR: 59.88
+
+==================================================
+Testing: round3_client3_attack_data.pt
+==================================================
+
+--- Fixed iDLG Attack ---
+Starting Fixed iDLG Attack
+Ground truth: shape=torch.Size([1, 1, 28, 28]), label=4
+Applied paper-consistent weight initialization
+Recomputed gradients with random model: 8 tensors
+Predicted label: 4 (True: 4)
+Starting optimization with lr=1.0, iterations=300
+[2025-06-09 00:09:48] 0 loss = 5.96675205, mse = 0.69561589
+[2025-06-09 00:09:52] 10 loss = 0.00002442, mse = 0.00004265
+Converged at iteration 14!
+
+============================================================
+FIXED iDLG ATTACK RESULTS
+============================================================
+Total time: 6.57 seconds
+Iterations: 15
+Final loss: 0.00000061
+Final MSE: 0.00000079
+PSNR: 62.55 dB
+SSIM: 0.9998
+Ground truth label: 4
+Predicted label: 4
+Label accuracy: CORRECT
+Fixed results saved to: idlg_results/fixed_iDLG_final_round3_client3_attack_data.png
+Fixed iDLG attack completed successfully
+MSE: 0.000001, PSNR: 62.55
+
+==================================================
+Testing: round3_client4_attack_data.pt
+==================================================
+
+--- Fixed iDLG Attack ---
+Starting Fixed iDLG Attack
+Ground truth: shape=torch.Size([1, 1, 28, 28]), label=6
+Applied paper-consistent weight initialization
+Recomputed gradients with random model: 8 tensors
+Predicted label: 6 (True: 6)
+Starting optimization with lr=1.0, iterations=300
+[2025-06-09 00:09:54] 0 loss = 5.39668465, mse = 0.70583671
+[2025-06-09 00:09:59] 10 loss = 0.00002612, mse = 0.00007123
+Converged at iteration 16!
+
+============================================================
+FIXED iDLG ATTACK RESULTS
+============================================================
+Total time: 7.61 seconds
+Iterations: 17
+Final loss: 0.00000092
+Final MSE: 0.00000336
+PSNR: 58.58 dB
+SSIM: 0.9995
+Ground truth label: 6
+Predicted label: 6
+Label accuracy: CORRECT
+Fixed results saved to: idlg_results/fixed_iDLG_final_round3_client4_attack_data.png
+Fixed iDLG attack completed successfully
+MSE: 0.000003, PSNR: 58.58
+
+==================================================
+Testing: round4_client0_attack_data.pt
+==================================================
+
+--- Fixed iDLG Attack ---
+Starting Fixed iDLG Attack
+Ground truth: shape=torch.Size([1, 1, 28, 28]), label=0
+Applied paper-consistent weight initialization
+Recomputed gradients with random model: 8 tensors
+Predicted label: 0 (True: 0)
+Starting optimization with lr=1.0, iterations=300
+[2025-06-09 00:10:02] 0 loss = 5.71808672, mse = 0.52073550
+[2025-06-09 00:10:06] 10 loss = 0.00001019, mse = 0.00001694
+Converged at iteration 13!
+
+============================================================
+FIXED iDLG ATTACK RESULTS
+============================================================
+Total time: 5.58 seconds
+Iterations: 14
+Final loss: 0.00000036
+Final MSE: 0.00000029
+PSNR: 67.87 dB
+SSIM: 1.0000
+Ground truth label: 0
+Predicted label: 0
+Label accuracy: CORRECT
+Fixed results saved to: idlg_results/fixed_iDLG_final_round4_client0_attack_data.png
+Fixed iDLG attack completed successfully
+MSE: 0.000000, PSNR: 67.87
+
+==================================================
+Testing: round4_client1_attack_data.pt
+==================================================
+
+--- Fixed iDLG Attack ---
+Starting Fixed iDLG Attack
+Ground truth: shape=torch.Size([1, 1, 28, 28]), label=2
+Applied paper-consistent weight initialization
+Recomputed gradients with random model: 8 tensors
+Predicted label: 2 (True: 2)
+Starting optimization with lr=1.0, iterations=300
+[2025-06-09 00:10:08] 0 loss = 9.60533333, mse = 0.63469821
+[2025-06-09 00:10:12] 10 loss = 0.00000100, mse = 0.00000190
+Converged at iteration 10!
+
+============================================================
+FIXED iDLG ATTACK RESULTS
+============================================================
+Total time: 4.19 seconds
+Iterations: 11
+Final loss: 0.00000100
+Final MSE: 0.00000190
+PSNR: 57.55 dB
+SSIM: 0.9999
+Ground truth label: 2
+Predicted label: 2
+Label accuracy: CORRECT
+Fixed results saved to: idlg_results/fixed_iDLG_final_round4_client1_attack_data.png
+Fixed iDLG attack completed successfully
+MSE: 0.000002, PSNR: 57.55
+
+==================================================
+Testing: round4_client2_attack_data.pt
+==================================================
+
+--- Fixed iDLG Attack ---
+Starting Fixed iDLG Attack
+Ground truth: shape=torch.Size([1, 1, 28, 28]), label=7
+Applied paper-consistent weight initialization
+Recomputed gradients with random model: 8 tensors
+Predicted label: 7 (True: 7)
+Starting optimization with lr=1.0, iterations=300
+[2025-06-09 00:10:13] 0 loss = 4.39845228, mse = 0.77004910
+[2025-06-09 00:10:16] 10 loss = 0.00020220, mse = 0.00120507
+[2025-06-09 00:10:21] 20 loss = 0.00000208, mse = 0.00001351
+Converged at iteration 22!
+
+============================================================
+FIXED iDLG ATTACK RESULTS
+============================================================
+Total time: 9.56 seconds
+Iterations: 23
+Final loss: 0.00000071
+Final MSE: 0.00000459
+PSNR: 59.32 dB
+SSIM: 0.9986
+Ground truth label: 7
+Predicted label: 7
+Label accuracy: CORRECT
+Fixed results saved to: idlg_results/fixed_iDLG_final_round4_client2_attack_data.png
+Fixed iDLG attack completed successfully
+MSE: 0.000005, PSNR: 59.32
+
+==================================================
+Testing: round4_client3_attack_data.pt
+==================================================
+
+--- Fixed iDLG Attack ---
+Starting Fixed iDLG Attack
+Ground truth: shape=torch.Size([1, 1, 28, 28]), label=3
+Applied paper-consistent weight initialization
+Recomputed gradients with random model: 8 tensors
+Predicted label: 3 (True: 3)
+Starting optimization with lr=1.0, iterations=300
+[2025-06-09 00:10:22] 0 loss = 207.23060608, mse = 74.30912781
+[2025-06-09 00:10:27] 10 loss = 44.44124603, mse = 109.68539429
+[2025-06-09 00:10:31] 20 loss = 32.03147507, mse = 130.25723267
+[2025-06-09 00:10:36] 30 loss = 27.79393768, mse = 164.63365173
+[2025-06-09 00:10:41] 40 loss = 24.35402870, mse = 198.40190125
+[2025-06-09 00:10:46] 50 loss = 23.02082443, mse = 233.55534363
+[2025-06-09 00:10:51] 60 loss = 21.61789513, mse = 266.89498901
+[2025-06-09 00:10:56] 70 loss = 20.73488235, mse = 293.32165527
+[2025-06-09 00:11:01] 80 loss = 20.00593185, mse = 321.77288818
+[2025-06-09 00:11:07] 90 loss = 19.58459091, mse = 348.81582642
+[2025-06-09 00:11:12] 100 loss = 19.22556877, mse = 377.26275635
+[2025-06-09 00:11:17] 110 loss = 18.96686172, mse = 403.82006836
+[2025-06-09 00:11:21] 120 loss = 18.45427132, mse = 432.94937134
+[2025-06-09 00:11:25] 130 loss = 17.83082008, mse = 452.28332520
+[2025-06-09 00:11:31] 140 loss = 17.48736954, mse = 468.65328979
+[2025-06-09 00:11:36] 150 loss = 17.18383598, mse = 491.18646240
+[2025-06-09 00:11:41] 160 loss = 16.85713196, mse = 508.07452393
+[2025-06-09 00:11:47] 170 loss = 16.51576614, mse = 526.68206787
+[2025-06-09 00:11:52] 180 loss = 16.25059128, mse = 543.86993408
+[2025-06-09 00:11:57] 190 loss = 16.05793381, mse = 556.39306641
+[2025-06-09 00:12:02] 200 loss = 15.86445904, mse = 571.46838379
+[2025-06-09 00:12:08] 210 loss = 15.12466621, mse = 578.89764404
+[2025-06-09 00:12:13] 220 loss = 14.83751774, mse = 587.42669678
+[2025-06-09 00:12:18] 230 loss = 14.71623135, mse = 597.07861328
+[2025-06-09 00:12:23] 240 loss = 14.61421967, mse = 610.88439941
+[2025-06-09 00:12:29] 250 loss = 14.46146965, mse = 622.89868164
+[2025-06-09 00:12:34] 260 loss = 14.29168224, mse = 636.89117432
+[2025-06-09 00:12:39] 270 loss = 14.13389492, mse = 643.70471191
+[2025-06-09 00:12:45] 280 loss = 13.78049946, mse = 648.98120117
+[2025-06-09 00:12:50] 290 loss = 13.50152206, mse = 660.73303223
+
+============================================================
+FIXED iDLG ATTACK RESULTS
+============================================================
+Total time: 152.11 seconds
+Iterations: 300
+Final loss: 12.94265938
+Final MSE: 668.29217529
+PSNR: 3.39 dB
+SSIM: 0.0130
+Ground truth label: 3
+Predicted label: 3
+Label accuracy: CORRECT
+Fixed results saved to: idlg_results/fixed_iDLG_final_round4_client3_attack_data.png
+Fixed iDLG attack completed successfully
+MSE: 668.292175, PSNR: 3.39
+
+==================================================
+Testing: round4_client4_attack_data.pt
+==================================================
+
+--- Fixed iDLG Attack ---
+Starting Fixed iDLG Attack
+Ground truth: shape=torch.Size([1, 1, 28, 28]), label=2
+Applied paper-consistent weight initialization
+Recomputed gradients with random model: 8 tensors
+Predicted label: 2 (True: 2)
+Starting optimization with lr=1.0, iterations=300
+[2025-06-09 00:12:55] 0 loss = 9.51980114, mse = 0.54355848
+[2025-06-09 00:12:59] 10 loss = 0.00005091, mse = 0.00018222
+Converged at iteration 15!
+
+============================================================
+FIXED iDLG ATTACK RESULTS
+============================================================
+Total time: 7.12 seconds
+Iterations: 16
+Final loss: 0.00000099
+Final MSE: 0.00000091
+PSNR: 63.03 dB
+SSIM: 1.0000
+Ground truth label: 2
+Predicted label: 2
+Label accuracy: CORRECT
+Fixed results saved to: idlg_results/fixed_iDLG_final_round4_client4_attack_data.png
+Fixed iDLG attack completed successfully
+MSE: 0.000001, PSNR: 63.03
+
+======================================================================
+COMPREHENSIVE iDLG ATTACK STATISTICS
+======================================================================
+Total attacks performed: 25
+Successful attacks: 25
+Success rate: 100.0%
+Total result images: 25
+
+Average iDLG Attack Performance:
+   MSE: 26.731697
+   PSNR: 61.17 dB
+   SSIM: 0.9601
+   Time: 12.8 seconds
+
+iDLG Attack Impact Analysis:
+   Critical Privacy Breach (MSE < 0.01): 24
+   Severe Privacy Leak (0.01 ≤ MSE < 0.05): 0
+   Moderate Success (MSE ≥ 0.05): 1
+
+iDLG Attack Time Analysis:
+   Minimum time: 3.4 seconds
+   Maximum time: 152.1 seconds
+   Average time: 12.8 seconds
+
+All 25 iDLG attacks completed!
+Results saved in 'idlg_results/' directory
+Compare these baseline times with DP-protected attack times

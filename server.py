@@ -63,7 +63,7 @@ def run_federated_training_with_idlg():
     
     print(f"Server initialized with {num_clients} clients")
     print(f"Planning {num_rounds} federated learning rounds")
-    print(f"Expected to generate {num_clients * num_rounds} attack data files")
+    print(f"Expected to generate {num_clients * num_rounds} iDLG attack data files")
     
     # Get initial parameters
     global_params = server.get_initial_parameters()
@@ -94,7 +94,7 @@ def run_federated_training_with_idlg():
                 client_weights.append(num_samples)
                 print(f"Client {client.cid}: {num_samples} samples, accuracy: {accuracy:.4f}")
                 
-                # Each client generates attack data every round (total 25 files)
+                # Each client generates iDLG attack data every round (total 25 files)
                 client.generate_idlg_data(global_params, round_num)
             else:
                 print(f"Client {client.cid}: No training data")
@@ -119,10 +119,10 @@ def run_federated_training_with_idlg():
     print(f"\nFederated learning completed!")
     print(f"iDLG attack data saved in 'idlg_inputs/' directory")
     
-    # List generated attack data files
+    # List generated iDLG attack data files
     if os.path.exists("idlg_inputs"):
         attack_files = [f for f in os.listdir("idlg_inputs") if f.endswith('.pt')]
-        print(f"Generated {len(attack_files)} attack data files:")
+        print(f"Generated {len(attack_files)} iDLG attack data files:")
         for file in sorted(attack_files):
             print(f"   - {file}")
     
@@ -131,3 +131,4 @@ def run_federated_training_with_idlg():
 if __name__ == "__main__":
     final_params = run_federated_training_with_idlg()
     print("\nReady for iDLG attacks on 25 data files!")
+    print("Next step: Run 'python idlg_attack.py' to perform attacks")

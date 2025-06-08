@@ -5,50 +5,50 @@ import os
 
 def get_model_params(model):
     """
-    獲取模型參數
+    Get model parameters
     """
     return [param.data.clone() for param in model.parameters()]
 
 def set_model_params(model, params):
     """
-    設置模型參數
+    Set model parameters
     """
     for param, new_param in zip(model.parameters(), params):
         param.data = new_param.data.clone()
 
 def aggregate_weighted_average(client_params_list, client_weights=None):
     """
-    使用加權平均聚合客戶端參數
+    Aggregate client parameters using weighted average
     
     Args:
-        client_params_list: 客戶端參數列表的列表
-        client_weights: 客戶端權重列表（如果為None，則使用等權重）
+        client_params_list: List of client parameter lists
+        client_weights: List of client weights (if None, use equal weights)
     
     Returns:
-        list: 聚合後的參數列表
+        list: Aggregated parameter list
     """
     if not client_params_list:
         return []
     
     num_clients = len(client_params_list)
     
-    # 如果沒有提供權重，使用等權重
+    # If no weights provided, use equal weights
     if client_weights is None:
         client_weights = [1.0 / num_clients] * num_clients
     else:
-        # 歸一化權重
+        # Normalize weights
         total_weight = sum(client_weights)
         client_weights = [w / total_weight for w in client_weights]
     
-    # 獲取參數數量
+    # Get number of parameters
     num_params = len(client_params_list[0])
     aggregated_params = []
     
     for param_idx in range(num_params):
-        # 收集所有客戶端的該參數
+        # Collect this parameter from all clients
         param_tensors = [client_params[param_idx] for client_params in client_params_list]
         
-        # 加權平均
+        # Weighted average
         weighted_param = torch.zeros_like(param_tensors[0])
         for param_tensor, weight in zip(param_tensors, client_weights):
             weighted_param += param_tensor * weight
@@ -59,17 +59,17 @@ def aggregate_weighted_average(client_params_list, client_weights=None):
 
 def save_gradients_list(gradients, filepath):
     """
-    保存梯度列表到文件
+    Save gradient list to file
     
     Args:
-        gradients: 梯度列表
-        filepath: 保存路径
+        gradients: Gradient list
+        filepath: Save path
     """
     try:
-        # 確保目錄存在
+        # Ensure directory exists
         os.makedirs(os.path.dirname(filepath), exist_ok=True)
         
-        # 將梯度轉換為可保存的格式
+        # Convert gradients to saveable format
         gradients_to_save = []
         for grad in gradients:
             if isinstance(grad, torch.Tensor):
@@ -85,13 +85,13 @@ def save_gradients_list(gradients, filepath):
 
 def load_gradients_list(filepath):
     """
-    從文件載入梯度列表
+    Load gradient list from file
     
     Args:
-        filepath: 文件路径
+        filepath: File path
         
     Returns:
-        list: 梯度列表
+        list: Gradient list
     """
     try:
         if not os.path.exists(filepath):
@@ -108,13 +108,13 @@ def load_gradients_list(filepath):
 
 def load_gradient(filepath):
     """
-    從文件載入單個梯度（為了向後兼容）
+    Load single gradient from file (for backward compatibility)
     
     Args:
-        filepath: 文件路径
+        filepath: File path
         
     Returns:
-        torch.Tensor or list: 梯度數據
+        torch.Tensor or list: Gradient data
     """
     try:
         if not os.path.exists(filepath):
@@ -131,17 +131,17 @@ def load_gradient(filepath):
 
 def save_gradient(gradient, filepath):
     """
-    保存單個梯度到文件
+    Save single gradient to file
     
     Args:
-        gradient: 梯度數據
-        filepath: 保存路径
+        gradient: Gradient data
+        filepath: Save path
     """
     try:
-        # 確保目錄存在
+        # Ensure directory exists
         os.makedirs(os.path.dirname(filepath), exist_ok=True)
         
-        # 將梯度轉換為可保存的格式
+        # Convert gradient to saveable format
         if isinstance(gradient, torch.Tensor):
             gradient_to_save = gradient.detach().cpu()
         else:
@@ -155,55 +155,55 @@ def save_gradient(gradient, filepath):
 
 def calculate_psnr(img1, img2):
     """
-    計算兩個圖像之間的 PSNR (Peak Signal-to-Noise Ratio)
+    Calculate PSNR (Peak Signal-to-Noise Ratio) between two images
     
     Args:
-        img1: 第一個圖像張量 (C, H, W) 或 (H, W)
-        img2: 第二個圖像張量 (C, H, W) 或 (H, W)
+        img1: First image tensor (C, H, W) or (H, W)
+        img2: Second image tensor (C, H, W) or (H, W)
     
     Returns:
-        float: PSNR 值 (單位: dB)
+        float: PSNR value (unit: dB)
     """
-    # 確保輸入是 torch.Tensor 並在 CPU 上
+    # Ensure inputs are torch.Tensor and on CPU
     if not isinstance(img1, torch.Tensor):
         img1 = torch.tensor(img1)
     if not isinstance(img2, torch.Tensor):
         img2 = torch.tensor(img2)
     
-    # 轉移到 CPU
+    # Move to CPU
     img1 = img1.cpu()
     img2 = img2.cpu()
     
-    # 確保形狀匹配
+    # Ensure shapes match
     if img1.shape != img2.shape:
         print(f"Warning: Image shapes don't match: {img1.shape} vs {img2.shape}")
         return 0.0
     
-    # 計算 MSE
+    # Calculate MSE
     mse = torch.mean((img1 - img2) ** 2)
     
-    # 避免除零錯誤
+    # Avoid division by zero
     if mse == 0:
         return float('inf')
     
-    # 計算 PSNR
-    max_pixel_value = 1.0  # 假設圖像已經歸一化到 [0, 1]
+    # Calculate PSNR
+    max_pixel_value = 1.0  # Assume images are normalized to [0, 1]
     psnr = 20 * torch.log10(max_pixel_value / torch.sqrt(mse))
     
     return psnr.item()
 
 def calculate_ssim(img1, img2):
     """
-    計算兩個圖像之間的 SSIM (Structural Similarity Index)
+    Calculate SSIM (Structural Similarity Index) between two images
     
     Args:
-        img1: 第一個圖像張量 (C, H, W) 或 (H, W)
-        img2: 第二個圖像張量 (C, H, W) 或 (H, W)
+        img1: First image tensor (C, H, W) or (H, W)
+        img2: Second image tensor (C, H, W) or (H, W)
     
     Returns:
-        float: SSIM 值 (範圍: [-1, 1])
+        float: SSIM value (range: [-1, 1])
     """
-    # 確保張量在 CPU 上並轉換為 numpy 數組
+    # Ensure tensors are on CPU and convert to numpy arrays
     try:
         if isinstance(img1, torch.Tensor):
             img1_np = img1.detach().cpu().numpy()
@@ -218,26 +218,26 @@ def calculate_ssim(img1, img2):
         print(f"Error converting tensors to numpy: {e}")
         return 0.0
     
-    # 確保形狀匹配
+    # Ensure shapes match
     if img1_np.shape != img2_np.shape:
         print(f"Warning: Image shapes don't match: {img1_np.shape} vs {img2_np.shape}")
         return 0.0
     
-    # 確保數據類型正確
+    # Ensure correct data type
     img1_np = img1_np.astype(np.float64)
     img2_np = img2_np.astype(np.float64)
     
-    # 確保數值範圍在 [0, 1]
+    # Ensure values are in [0, 1] range
     img1_np = np.clip(img1_np, 0, 1)
     img2_np = np.clip(img2_np, 0, 1)
     
-    # 處理不同的圖像維度
+    # Handle different image dimensions
     if len(img1_np.shape) == 3:  # (C, H, W)
-        if img1_np.shape[0] == 1:  # 單通道
+        if img1_np.shape[0] == 1:  # Single channel
             img1_np = img1_np.squeeze(0)
             img2_np = img2_np.squeeze(0)
-        else:  # 多通道
-            # 對於多通道圖像，計算每個通道的 SSIM 然後取平均
+        else:  # Multi-channel
+            # For multi-channel images, calculate SSIM for each channel and take average
             ssim_values = []
             for c in range(img1_np.shape[0]):
                 try:
@@ -248,27 +248,27 @@ def calculate_ssim(img1, img2):
                     ssim_values.append(0.0)
             return np.mean(ssim_values)
     
-    # 單通道或已經是 2D 圖像
+    # Single channel or already 2D image
     return compute_ssim_2d(img1_np, img2_np)
 
 def compute_ssim_2d(img1, img2):
     """
-    計算 2D 圖像的 SSIM
+    Calculate SSIM for 2D images
     """
     try:
-        # 檢查圖像大小
+        # Check image size
         min_dim = min(img1.shape)
         if min_dim < 7:
-            # 對於小圖像，使用較小的窗口
+            # For small images, use smaller window
             win_size = min_dim if min_dim % 2 == 1 else min_dim - 1
-            win_size = max(3, win_size)  # 至少使用 3x3 窗口
+            win_size = max(3, win_size)  # Use at least 3x3 window
         else:
             win_size = 7
         
-        # 計算 SSIM
+        # Calculate SSIM
         ssim_val = ssim(
             img1, img2, 
-            data_range=1.0,  # 數據範圍 [0, 1]
+            data_range=1.0,  # Data range [0, 1]
             win_size=win_size
         )
         
@@ -276,24 +276,24 @@ def compute_ssim_2d(img1, img2):
         
     except Exception as e:
         print(f"Warning: SSIM calculation failed: {e}")
-        # 如果 scikit-image 失敗，使用簡單的相關係數作為替代
+        # If scikit-image fails, use simple correlation coefficient as alternative
         return simple_ssim(img1, img2)
 
 def simple_ssim(img1, img2):
     """
-    簡單的 SSIM 替代實現（基於相關係數）
+    Simple SSIM alternative implementation (based on correlation coefficient)
     """
     try:
-        # 計算均值
+        # Calculate means
         mu1 = np.mean(img1)
         mu2 = np.mean(img2)
         
-        # 計算方差和協方差
+        # Calculate variance and covariance
         var1 = np.var(img1)
         var2 = np.var(img2)
         cov = np.mean((img1 - mu1) * (img2 - mu2))
         
-        # SSIM 的簡化版本
+        # Simplified SSIM
         c1 = 0.01 ** 2
         c2 = 0.03 ** 2
         
@@ -311,35 +311,35 @@ def simple_ssim(img1, img2):
 
 def aggregate_gradients(client_gradients_list, aggregation_method='avg'):
     """
-    聚合來自多個客戶端的梯度
+    Aggregate gradients from multiple clients
     
     Args:
-        client_gradients_list: 客戶端梯度列表的列表
-        aggregation_method: 聚合方法 ('avg', 'sum', 'weighted_avg')
+        client_gradients_list: List of client gradient lists
+        aggregation_method: Aggregation method ('avg', 'sum', 'weighted_avg')
     
     Returns:
-        list: 聚合後的梯度列表
+        list: Aggregated gradient list
     """
     if not client_gradients_list:
         return []
     
-    # 獲取參數數量
+    # Get number of parameters
     num_params = len(client_gradients_list[0])
     num_clients = len(client_gradients_list)
     
     aggregated_grads = []
     
     for param_idx in range(num_params):
-        # 收集所有客戶端的該參數梯度
+        # Collect this parameter gradient from all clients
         param_grads = [client_grads[param_idx] for client_grads in client_gradients_list]
         
         if aggregation_method == 'avg':
-            # 平均聚合
+            # Average aggregation
             aggregated_grad = torch.stack(param_grads).mean(dim=0)
         elif aggregation_method == 'sum':
-            # 求和聚合
+            # Sum aggregation
             aggregated_grad = torch.stack(param_grads).sum(dim=0)
-        else:  # 默認使用平均
+        else:  # Default to average
             aggregated_grad = torch.stack(param_grads).mean(dim=0)
         
         aggregated_grads.append(aggregated_grad)
@@ -348,25 +348,25 @@ def aggregate_gradients(client_gradients_list, aggregation_method='avg'):
 
 def apply_differential_privacy(gradients, noise_multiplier=1.0, l2_norm_clip=1.0):
     """
-    對梯度應用差分隱私噪聲
+    Apply differential privacy noise to gradients
     
     Args:
-        gradients: 梯度列表
-        noise_multiplier: 噪聲倍數
-        l2_norm_clip: L2 範數裁剪閾值
+        gradients: Gradient list
+        noise_multiplier: Noise multiplier
+        l2_norm_clip: L2 norm clipping threshold
     
     Returns:
-        list: 添加噪聲後的梯度列表
+        list: Gradient list with added noise
     """
     dp_gradients = []
     
     for grad in gradients:
-        # L2 範數裁剪
+        # L2 norm clipping
         grad_norm = torch.norm(grad)
         if grad_norm > l2_norm_clip:
             grad = grad * (l2_norm_clip / grad_norm)
         
-        # 添加高斯噪聲
+        # Add Gaussian noise
         noise_std = noise_multiplier * l2_norm_clip
         noise = torch.normal(0, noise_std, size=grad.shape)
         
@@ -377,13 +377,13 @@ def apply_differential_privacy(gradients, noise_multiplier=1.0, l2_norm_clip=1.0
 
 def normalize_image(img):
     """
-    將圖像歸一化到 [0, 1] 範圍
+    Normalize image to [0, 1] range
     
     Args:
-        img: 輸入圖像張量
+        img: Input image tensor
     
     Returns:
-        torch.Tensor: 歸一化後的圖像
+        torch.Tensor: Normalized image
     """
     if isinstance(img, torch.Tensor):
         img = img.cpu()
@@ -398,13 +398,13 @@ def normalize_image(img):
 
 def tensor_to_numpy(tensor):
     """
-    將 PyTorch 張量轉換為 NumPy 數組
+    Convert PyTorch tensor to NumPy array
     
     Args:
-        tensor: PyTorch 張量
+        tensor: PyTorch tensor
     
     Returns:
-        numpy.ndarray: NumPy 數組
+        numpy.ndarray: NumPy array
     """
     if isinstance(tensor, torch.Tensor):
         return tensor.detach().cpu().numpy()
@@ -412,14 +412,14 @@ def tensor_to_numpy(tensor):
 
 def numpy_to_tensor(array, device=None):
     """
-    將 NumPy 數組轉換為 PyTorch 張量
+    Convert NumPy array to PyTorch tensor
     
     Args:
-        array: NumPy 數組
-        device: 目標設備
+        array: NumPy array
+        device: Target device
     
     Returns:
-        torch.Tensor: PyTorch 張量
+        torch.Tensor: PyTorch tensor
     """
     tensor = torch.from_numpy(array).float()
     if device is not None:
@@ -428,15 +428,15 @@ def numpy_to_tensor(array, device=None):
 
 def clip_image(img, min_val=0.0, max_val=1.0):
     """
-    將圖像值裁剪到指定範圍
+    Clip image values to specified range
     
     Args:
-        img: 輸入圖像
-        min_val: 最小值
-        max_val: 最大值
+        img: Input image
+        min_val: Minimum value
+        max_val: Maximum value
     
     Returns:
-        裁剪後的圖像
+        Clipped image
     """
     if isinstance(img, torch.Tensor):
         return torch.clamp(img, min_val, max_val)

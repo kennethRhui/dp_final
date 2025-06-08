@@ -16,15 +16,15 @@ class FederatedServerDP:
         self.current_round = 0
         
     def get_initial_parameters(self):
-        """獲取初始全局參數"""
+        """Get initial global parameters"""
         return [param.detach().cpu().clone() for param in self.global_model.parameters()]
     
     def aggregate_parameters(self, client_parameters_list, client_weights):
-        """聚合客戶端參數"""
+        """Aggregate client parameters"""
         if not client_parameters_list:
             return self.get_initial_parameters()
         
-        # 加權平均聚合
+        # Weighted average aggregation
         aggregated_params = []
         total_weight = sum(client_weights)
         
@@ -40,14 +40,14 @@ class FederatedServerDP:
         return aggregated_params
     
     def update_global_model(self, aggregated_params):
-        """更新全局模型"""
+        """Update global model"""
         with torch.no_grad():
             for param, new_param in zip(self.global_model.parameters(), aggregated_params):
                 param.data.copy_(new_param.to(self.device))
 
 def run_federated_training_with_multiple_epsilon():
     """
-    運行5種不同epsilon值的差分隱私聯邦學習訓練
+    Run differential privacy federated learning training with 5 different epsilon values
     """
     print("Starting Multi-Epsilon Differential Privacy Federated Learning")
     print("="*70)
@@ -55,18 +55,18 @@ def run_federated_training_with_multiple_epsilon():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
     
-    # 重新調整epsilon值：確保有明顯的保護差異
+    # Readjust epsilon values: ensure significant protection differences
     epsilon_values = [
-        100.0,  # 極低隱私保護（幾乎無保護）
-        10.0,   # 低隱私保護
-        1.0,    # 中等隱私保護
-        0.1,    # 高隱私保護
-        0.01    # 極高隱私保護
+        100.0,  # Extremely low privacy protection (almost no protection)
+        10.0,   # Low privacy protection
+        1.0,    # Medium privacy protection
+        0.1,    # High privacy protection
+        0.01    # Extremely high privacy protection
     ]
     
     num_clients = 5
     num_rounds = 5
-    delta = 1e-5  # 固定delta值
+    delta = 1e-5  # Fixed delta value
     
     print(f"Testing {len(epsilon_values)} epsilon values: {epsilon_values}")
     print(f"Delta: {delta}")
@@ -77,41 +77,41 @@ def run_federated_training_with_multiple_epsilon():
         print(f"TESTING EPSILON = {epsilon} (Test {epsilon_idx + 1}/{len(epsilon_values)})")
         print(f"{'='*60}")
         
-        # 為每個epsilon創建新的服務器和客戶端
+        # Create new server and clients for each epsilon
         server = FederatedServerDP(num_clients=num_clients, device=device)
         clients = [
             ClientDP(cid=i, device=device, epsilon=epsilon, delta=delta) 
             for i in range(num_clients)
         ]
         
-        # 計算預期的噪聲倍數
+        # Calculate expected noise multiplier
         expected_noise = (2 * np.log(1.25 / delta)) / epsilon if epsilon > 0 else float('inf')
         print(f"Initialized {num_clients} clients with ε={epsilon}, δ={delta}")
         print(f"Expected noise multiplier: {expected_noise:.4f}")
         
-        # 獲取初始參數
+        # Get initial parameters
         global_params = server.get_initial_parameters()
         
         for round_num in range(num_rounds):
             print(f"\n--- Round {round_num + 1}/{num_rounds} (ε={epsilon}) ---")
             
-            # 客戶端訓練
+            # Client training
             client_params_list = []
             client_weights = []
             client_accuracies = []
             
             for client in clients:
-                # 根據epsilon調整訓練配置
+                # Adjust training configuration based on epsilon
                 if epsilon >= 10.0:
-                    # 低保護：適中訓練輪數和學習率
+                    # Low protection: moderate training epochs and learning rate
                     local_epochs = 3
                     learning_rate = 0.01
                 elif epsilon >= 1.0:
-                    # 中等保護：適中訓練參數
+                    # Medium protection: moderate training parameters
                     local_epochs = 5
                     learning_rate = 0.005
                 else:
-                    # 高保護：更多訓練輪數補償噪聲
+                    # High protection: more training epochs to compensate for noise
                     local_epochs = 8
                     learning_rate = 0.001
                 
@@ -120,27 +120,27 @@ def run_federated_training_with_multiple_epsilon():
                     "learning_rate": learning_rate
                 }
                 
-                # 客戶端訓練
+                # Client training
                 updated_params, num_samples, train_accuracy = client.fit(global_params, config)
                 
                 if num_samples > 0:
                     client_params_list.append(updated_params)
                     client_weights.append(num_samples)
                     
-                    # 獲取客戶端評估準確度
+                    # Get client evaluation accuracy
                     eval_accuracy = client.evaluate()
                     client_accuracies.append(eval_accuracy)
                     
                     print(f"Client {client.cid}: {num_samples} samples, "
                           f"train_acc: {train_accuracy:.4f}, eval_acc: {eval_accuracy:.4f}")
                     
-                    # 只為對角線模式的客戶端生成攻擊數據（節省時間）
-                    # 且只在特定輪次生成（為了區分不同epsilon）
-                    if client.cid == round_num and round_num == epsilon_idx:
+                    # Generate attack data for each round's corresponding client
+                    # Round 0: Client 0, Round 1: Client 1, ..., Round 4: Client 4
+                    if client.cid == round_num:
                         client.generate_idlg_data_with_dp(global_params, round_num)
                         print(f"Generated DP attack data for ε={epsilon}, Round {round_num}, Client {client.cid}")
             
-            # 參數聚合
+            # Parameter aggregation
             if client_params_list:
                 aggregated_params = server.aggregate_parameters(client_params_list, client_weights)
                 server.update_global_model(aggregated_params)
@@ -148,7 +148,7 @@ def run_federated_training_with_multiple_epsilon():
                 
                 total_samples = sum(client_weights)
                 
-                # 修正：正確計算加權平均準確度
+                # Fixed: correctly calculate weighted average accuracy
                 if client_accuracies:
                     weighted_accuracy = sum(w * acc for w, acc in zip(client_weights, client_accuracies))
                     avg_accuracy = weighted_accuracy / total_samples
@@ -164,7 +164,7 @@ def run_federated_training_with_multiple_epsilon():
         
         print(f"Completed training with ε={epsilon}")
         
-        # 最終整體評估
+        # Final overall evaluation
         if clients:
             final_accuracies = [client.evaluate() for client in clients]
             final_avg_accuracy = sum(final_accuracies) / len(final_accuracies)
@@ -174,7 +174,7 @@ def run_federated_training_with_multiple_epsilon():
     print(f"\nMulti-epsilon federated learning completed!")
     print(f"DP iDLG attack data saved in 'idlg_inputs_dp/' directory")
     
-    # 列出生成的攻擊數據文件
+    # List generated attack data files
     if os.path.exists("idlg_inputs_dp"):
         attack_files = [f for f in os.listdir("idlg_inputs_dp") if f.endswith('.pt')]
         print(f"Generated {len(attack_files)} DP attack data files:")

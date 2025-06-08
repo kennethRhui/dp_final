@@ -10,11 +10,11 @@ class Client:
     def __init__(self, cid, device=torch.device('cpu')):
         self.cid = cid
         self.device = device
-        # 使用LeNet架構以便與iDLG攻擊兼容
+        # Use LeNet architecture for compatibility with iDLG attacks
         self.model = LeNetMNIST(channel=1, hidden=588, num_classes=10).to(device)
         
     def set_parameters(self, parameters):
-        """設置模型參數"""
+        """Set model parameters"""
         try:
             if isinstance(parameters, list) and len(parameters) > 0:
                 if isinstance(parameters[0], torch.Tensor):
@@ -42,11 +42,11 @@ class Client:
             print(f"Warning: Client {self.cid} parameter loading failed: {e}")
     
     def get_parameters(self):
-        """獲取模型參數"""
+        """Get model parameters"""
         return [param.detach().cpu().clone() for param in self.model.parameters()]
     
     def fit(self, parameters, config):
-        """訓練模型"""
+        """Train model"""
         self.set_parameters(parameters)
         
         result = get_dataloaders(self.cid)
@@ -103,7 +103,7 @@ class Client:
         return self.get_parameters(), total_samples, final_accuracy
     
     def evaluate(self):
-        """評估模型"""
+        """Evaluate model"""
         result = get_dataloaders(self.cid)
         if result is None:
             return 0.0
@@ -130,48 +130,48 @@ class Client:
     
     def generate_idlg_data(self, global_params, round_num):
         """
-        生成iDLG攻擊用的數據
-        模擬真實的聯邦學習訓練過程
+        Generate data for iDLG attacks
+        Simulate real federated learning training process
         """
-        print(f"🎯 Generating iDLG attack data for Client {self.cid}, Round {round_num}")
+        print(f"Generating iDLG attack data for Client {self.cid}, Round {round_num}")
         
-        # 設置全局參數
+        # Set global parameters
         self.set_parameters(global_params)
         
-        # 獲取訓練數據
+        # Get training data
         result = get_dataloaders(self.cid)
         if result is None:
-            print(f"❌ No data available for Client {self.cid}")
+            print(f"No data available for Client {self.cid}")
             return
         
         train_loader, _ = result
         if train_loader is None:
-            print(f"❌ No training data for Client {self.cid}")
+            print(f"No training data for Client {self.cid}")
             return
         
-        # 獲取單個batch進行攻擊
+        # Get single batch for attack
         for data_batch, target_batch in train_loader:
-            # 只取第一個樣本
+            # Take only the first sample
             gt_data = data_batch[0:1].to(self.device)
             gt_label = target_batch[0:1].to(self.device)
             
-            print(f"📊 Target sample: shape={gt_data.shape}, label={gt_label.item()}")
+            print(f"Target sample: shape={gt_data.shape}, label={gt_label.item()}")
             
-            # 確保模型處於訓練模式（與真實聯邦學習一致）
+            # Ensure model is in training mode (consistent with real federated learning)
             self.model.train()
             
-            # 計算真實梯度
+            # Calculate real gradients
             criterion = torch.nn.CrossEntropyLoss()
             
-            # 前向傳播
+            # Forward pass
             output = self.model(gt_data)
             loss = criterion(output, gt_label)
             
-            # 計算梯度
+            # Calculate gradients
             original_gradients = torch.autograd.grad(loss, self.model.parameters())
             original_gradients = [grad.detach().clone().cpu() for grad in original_gradients]
             
-            # 保存攻擊數據
+            # Save attack data
             os.makedirs("idlg_inputs", exist_ok=True)
             
             attack_data = {
@@ -184,14 +184,14 @@ class Client:
                 'client_id': self.cid
             }
             
-            # 保存數據
+            # Save data
             save_path = f"idlg_inputs/round{round_num}_client{self.cid}_attack_data.pt"
             torch.save(attack_data, save_path)
             
-            # 驗證梯度
+            # Verify gradients
             total_norm = sum(grad.norm().item() for grad in original_gradients)
-            print(f"✅ Attack data saved: {save_path}")
-            print(f"📈 Gradient norm: {total_norm:.6f}")
-            print(f"📊 Sample label: {gt_label.item()}")
+            print(f"Attack data saved: {save_path}")
+            print(f"Gradient norm: {total_norm:.6f}")
+            print(f"Sample label: {gt_label.item()}")
             
-            break  # 只處理第一個batch
+            break  # Only process first batch

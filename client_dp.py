@@ -10,39 +10,39 @@ class ClientDP:
     def __init__(self, cid, device=torch.device('cpu'), epsilon=1.0, delta=1e-5):
         self.cid = cid
         self.device = device
-        # 使用LeNet架構以便與iDLG攻擊兼容
+        # Use LeNet architecture for compatibility with iDLG attacks
         self.model = LeNetMNIST(channel=1, hidden=588, num_classes=10).to(device)
         
-        # 差分隱私參數
+        # Differential privacy parameters
         self.epsilon = epsilon
         self.delta = delta
-        self.max_grad_norm = 1.0  # 固定梯度裁剪範數
+        self.max_grad_norm = 1.0  # Fixed gradient clipping norm
         
-        # 根據epsilon計算noise_multiplier
+        # Calculate noise_multiplier based on epsilon
         self.noise_multiplier = self._calculate_noise_multiplier(epsilon, delta)
         
     def _calculate_noise_multiplier(self, epsilon, delta):
         """
-        根據epsilon和delta計算noise multiplier
-        使用改進的DP公式，確保低epsilon時有明顯差異
+        Calculate noise multiplier based on epsilon and delta
+        Use improved DP formula to ensure significant differences at low epsilon
         """
         if epsilon <= 0:
-            return float('inf')  # 無限噪聲
+            return float('inf')  # Infinite noise
         
-        # 改進的DP公式：對不同epsilon範圍使用不同策略
+        # Improved DP formula: use different strategies for different epsilon ranges
         sensitivity = self.max_grad_norm
         
         if epsilon >= 10.0:
-            # 對於高epsilon，使用較小的噪聲
+            # For high epsilon, use smaller noise
             noise_multiplier = (1.0 * sensitivity) / epsilon
         else:
-            # 對於低epsilon，使用標準公式
+            # For low epsilon, use standard formula
             noise_multiplier = (2 * np.log(1.25 / delta) * sensitivity) / epsilon
         
-        return max(noise_multiplier, 0.01)  # 降低最小值0.01避免數值問題
+        return max(noise_multiplier, 0.01)  # Lower minimum value to 0.01 to avoid numerical issues
         
     def set_parameters(self, parameters):
-        """設置模型參數"""
+        """Set model parameters"""
         try:
             if isinstance(parameters, list) and len(parameters) > 0:
                 if isinstance(parameters[0], torch.Tensor):
@@ -70,11 +70,11 @@ class ClientDP:
             print(f"Warning: Client {self.cid} parameter loading failed: {e}")
     
     def get_parameters(self):
-        """獲取模型參數"""
+        """Get model parameters"""
         return [param.detach().cpu().clone() for param in self.model.parameters()]
     
     def clip_gradients(self, gradients, max_norm):
-        """梯度裁剪"""
+        """Gradient clipping"""
         total_norm = torch.sqrt(sum(grad.norm() ** 2 for grad in gradients))
         clip_coef = max_norm / (total_norm + 1e-6)
         clip_coef_clamped = torch.clamp(clip_coef, max=1.0)
@@ -86,7 +86,7 @@ class ClientDP:
         return clipped_gradients
     
     def add_noise_to_gradients(self, gradients, noise_multiplier, max_norm):
-        """為梯度添加高斯噪聲"""
+        """Add Gaussian noise to gradients"""
         noisy_gradients = []
         for grad in gradients:
             noise = torch.normal(
@@ -99,7 +99,7 @@ class ClientDP:
         return noisy_gradients
     
     def fit(self, parameters, config):
-        """訓練模型（加入差分隱私）"""
+        """Train model (with differential privacy)"""
         self.set_parameters(parameters)
         
         result = get_dataloaders(self.cid)
@@ -121,7 +121,7 @@ class ClientDP:
         self.model.train()
         total_samples = 0
         total_loss = 0.0
-        total_correct = 0  # 修正：添加總正確數計算
+        total_correct = 0  # Fixed: Add total correct calculation
         
         for epoch in range(epochs):
             epoch_loss = 0.0
@@ -137,48 +137,48 @@ class ClientDP:
                 loss = criterion(output, target)
                 loss.backward()
                 
-                # 應用差分隱私：梯度裁剪和噪聲添加
+                # Apply differential privacy: gradient clipping and noise addition
                 gradients = [param.grad.clone() for param in self.model.parameters() if param.grad is not None]
                 
-                # 梯度裁剪
+                # Gradient clipping
                 clipped_gradients = self.clip_gradients(gradients, self.max_grad_norm)
                 
-                # 添加噪聲
+                # Add noise
                 noisy_gradients = self.add_noise_to_gradients(
                     clipped_gradients, self.noise_multiplier, self.max_grad_norm
                 )
                 
-                # 更新模型參數
+                # Update model parameters
                 with torch.no_grad():
                     for param, noisy_grad in zip(self.model.parameters(), noisy_gradients):
                         if param.grad is not None:
                             param.grad.data = noisy_grad
+                
+                torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=1.0)
+                optimizer.step()
+                
+                epoch_loss += loss.item()
+                epoch_samples += len(data)
+                pred = output.argmax(dim=1, keepdim=True)
+                correct += pred.eq(target.view_as(pred)).sum().item()
             
-            torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=1.0)
-            optimizer.step()
+            total_samples += epoch_samples
+            total_loss += epoch_loss
+            total_correct += correct  # Fixed: Accumulate total correct
+            epoch_acc = correct / epoch_samples if epoch_samples > 0 else 0.0
+            avg_loss = epoch_loss / len(train_loader)
             
-            epoch_loss += loss.item()
-            epoch_samples += len(data)
-            pred = output.argmax(dim=1, keepdim=True)
-            correct += pred.eq(target.view_as(pred)).sum().item()
-            
-        total_samples += epoch_samples
-        total_loss += epoch_loss
-        total_correct += correct  # 修正：累計總正確數
-        epoch_acc = correct / epoch_samples if epoch_samples > 0 else 0.0
-        avg_loss = epoch_loss / len(train_loader)
+            print(f"  Client {self.cid} DP Epoch {epoch+1}/{epochs}: "
+                  f"Loss={avg_loss:.4f}, Acc={epoch_acc:.4f}, Samples={epoch_samples}, "
+                  f"ε={self.epsilon:.1f}")
         
-        print(f"  Client {self.cid} DP Epoch {epoch+1}/{epochs}: "
-              f"Loss={avg_loss:.4f}, Acc={epoch_acc:.4f}, Samples={epoch_samples}, "
-              f"ε={self.epsilon:.1f}")
-    
-        # 修正：計算最終訓練準確度
+        # Fixed: Calculate final training accuracy
         final_train_accuracy = total_correct / total_samples if total_samples > 0 else 0.0
         
         return self.get_parameters(), total_samples, final_train_accuracy
     
     def evaluate(self):
-        """評估模型"""
+        """Evaluate model"""
         result = get_dataloaders(self.cid)
         if result is None:
             print(f"Client {self.cid}: No data for evaluation")
@@ -207,11 +207,11 @@ class ClientDP:
         return accuracy
     
     def generate_idlg_data_with_dp(self, global_params, round_num):
-        """生成用於iDLG攻擊的DP梯度數據"""
-        # 設置全局參數
+        """Generate DP gradient data for iDLG attacks"""
+        # Set global parameters
         self.set_parameters(global_params)
     
-        # 獲取一個樣本
+        # Get one sample
         result = get_dataloaders(self.cid)
         if result is None:
             return
@@ -220,59 +220,59 @@ class ClientDP:
         if train_loader is None:
             return
     
-        # 獲取第一個batch的第一個樣本
+        # Get first sample from first batch
         try:
             data_iter = iter(train_loader)
             batch_data, batch_labels = next(data_iter)
             
-            # 只取第一個樣本
+            # Take only the first sample
             sample_data = batch_data[0:1].to(self.device)  # shape: [1, 1, 28, 28]
             sample_label = batch_labels[0:1].to(self.device)  # shape: [1]
             
             print(f"Target sample: shape={sample_data.shape}, label={sample_label.item()}")
             
-            # 計算原始梯度
+            # Calculate original gradients
             self.model.zero_grad()
             output = self.model(sample_data)
             loss = torch.nn.CrossEntropyLoss()(output, sample_label)
             loss.backward()
             
-            # 收集原始梯度
+            # Collect original gradients
             original_gradients = []
             for param in self.model.parameters():
                 if param.grad is not None:
                     original_gradients.append(param.grad.clone())
             
-            # 計算原始梯度範數
+            # Calculate original gradient norm
             original_grad_norm = torch.sqrt(sum(torch.sum(g**2) for g in original_gradients)).item()
             
-            # 應用差分隱私
+            # Apply differential privacy
             clipped_gradients = self.clip_gradients(original_gradients, self.max_grad_norm)
             dp_gradients = self.add_noise_to_gradients(clipped_gradients, self.noise_multiplier, self.max_grad_norm)
             
-            # 計算DP梯度範數
+            # Calculate DP gradient norm
             dp_grad_norm = torch.sqrt(sum(torch.sum(g**2) for g in dp_gradients)).item()
             
-            # 從梯度推斷標籤（iDLG的核心）
+            # Infer label from gradients (core of iDLG)
             if len(dp_gradients) > 0:
-                # 假設最後一層是輸出層
+                # Assume last layer is output layer
                 last_layer_grad = dp_gradients[-1]
                 if last_layer_grad.dim() > 0:
                     predicted_label = torch.argmin(last_layer_grad, dim=0).item()
                 else:
-                    predicted_label = sample_label.item()  # 回退到真實標籤
+                    predicted_label = sample_label.item()  # Fallback to true label
             else:
                 predicted_label = sample_label.item()
             
-            # 修正：確保保存正確的鍵名
+            # Fixed: Ensure correct key names are saved
             attack_data = {
-                'dp_gradients': [g.cpu() for g in dp_gradients],           # 確保使用正確的鍵名
+                'dp_gradients': [g.cpu() for g in dp_gradients],           # Ensure correct key name
                 'original_gradients': [g.cpu() for g in original_gradients],
                 'target_data': sample_data.cpu(),
                 'true_label': sample_label.cpu(),
                 'predicted_label': predicted_label,
                 'epsilon': self.epsilon,
-                'delta': 1e-5,  # 添加 delta
+                'delta': 1e-5,  # Add delta
                 'noise_multiplier': self.noise_multiplier,
                 'max_grad_norm': self.max_grad_norm,
                 'client_id': self.cid,
@@ -281,15 +281,15 @@ class ClientDP:
                 'dp_grad_norm': dp_grad_norm
             }
             
-            # 確保目錄存在
+            # Ensure directory exists
             os.makedirs('idlg_inputs_dp', exist_ok=True)
             
-            # 保存檔案
+            # Save file
             filename = f"idlg_inputs_dp/round{round_num}_client{self.cid}_eps{self.epsilon}_dp_attack_data.pt"
             torch.save(attack_data, filename)
             print(f"Attack data saved: {filename}")
             
-            # 輸出攻擊資訊
+            # Output attack information
             print(f"Original gradient norm: {original_grad_norm:.6f}")
             print(f"DP gradient norm: {dp_grad_norm:.6f}")
             print(f"Epsilon: {self.epsilon}")

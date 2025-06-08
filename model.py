@@ -4,40 +4,40 @@ import torch.nn.functional as F
 
 class OptimizedMNISTCNN(nn.Module):
     """
-    優化的MNIST CNN模型 - 適配iDLG攻擊
+    Optimized MNIST CNN model - adapted for iDLG attacks
     """
     def __init__(self, num_classes=10):
         super(OptimizedMNISTCNN, self).__init__()
         
-        # 使用Sigmoid激活函數，更適合梯度反轉攻擊
+        # Use Sigmoid activation function, more suitable for gradient inversion attacks
         act = nn.Sigmoid
         
-        # 卷積層 - 類似LeNet架構
+        # Convolutional layers - similar to LeNet architecture
         self.conv_layers = nn.Sequential(
-            # 第一層卷積
+            # First convolutional layer
             nn.Conv2d(1, 12, kernel_size=5, padding=2, stride=2),  # 28x28 -> 14x14
             act(),
             
-            # 第二層卷積  
+            # Second convolutional layer
             nn.Conv2d(12, 12, kernel_size=5, padding=2, stride=2),  # 14x14 -> 7x7
             act(),
             
-            # 第三層卷積
+            # Third convolutional layer
             nn.Conv2d(12, 12, kernel_size=5, padding=2, stride=1),  # 7x7 -> 7x7
             act(),
         )
         
-        # 計算展平後的特徵維度 (12 * 7 * 7 = 588)
+        # Calculate flattened feature dimension (12 * 7 * 7 = 588)
         self.feature_dim = 12 * 7 * 7
         
-        # 全連接層
+        # Fully connected layer
         self.fc = nn.Linear(self.feature_dim, num_classes)
         
-        # 初始化權重 - 使用與原代碼相同的初始化方式
+        # Weight initialization - use same initialization as original code
         self.apply(self._weights_init)
     
     def _weights_init(self, m):
-        """權重初始化 - 與原iDLG代碼保持一致"""
+        """Weight initialization - consistent with original iDLG code"""
         try:
             if hasattr(m, "weight"):
                 m.weight.data.uniform_(-0.5, 0.5)
@@ -50,25 +50,25 @@ class OptimizedMNISTCNN(nn.Module):
             print(f'Warning: failed in weights_init for {m._get_name()}.bias')
     
     def forward(self, x):
-        # 卷積特徵提取
+        # Convolutional feature extraction
         out = self.conv_layers(x)
         
-        # 展平
+        # Flatten
         out = out.view(out.size(0), -1)
         
-        # 全連接分類
+        # Fully connected classification
         out = self.fc(out)
         
         return out
     
     def get_feature_dim(self):
-        """獲取特徵維度"""
+        """Get feature dimension"""
         return self.feature_dim
 
 
 class LeNetMNIST(nn.Module):
     """
-    LeNet架構的MNIST模型 - 直接適配原iDLG代碼
+    LeNet architecture MNIST model - directly adapted from original iDLG code
     """
     def __init__(self, channel=1, hidden=588, num_classes=10):
         super(LeNetMNIST, self).__init__()
@@ -88,11 +88,11 @@ class LeNetMNIST(nn.Module):
             nn.Linear(hidden, num_classes)
         )
         
-        # 應用權重初始化
+        # Apply weight initialization
         self.apply(self._weights_init)
     
     def _weights_init(self, m):
-        """權重初始化"""
+        """Weight initialization"""
         try:
             if hasattr(m, "weight"):
                 m.weight.data.uniform_(-0.5, 0.5)
