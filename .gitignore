@@ -1,0 +1,12 @@
+
+__pycache__/
+
+clean_inputs/
+
+data/MNIST/raw/
+
+idlg_inputs/
+
+idlg_inputs_dp/
+
+pdf/
